@@ -14,6 +14,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -33,10 +34,13 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aetherscreen.core.model.AppSettings
@@ -172,10 +176,20 @@ fun MainScreen() {
     var installedApps by remember { mutableStateOf<List<AppInfoItem>>(emptyList()) }
     var updateAvailableVersion by remember { mutableStateOf<String?>(null) }
 
+    val lifecycleOwner = LocalLifecycleOwner.current
+
     // Check service state periodically or when returning
-    DisposableEffect(Unit) {
-        isServiceRunning = OverlayService.isRunning
-        onDispose {}
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                hasOverlayPermission = Settings.canDrawOverlays(context)
+                isServiceRunning = OverlayService.isRunning
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
     }
 
     // Load launchable user apps & check for updates

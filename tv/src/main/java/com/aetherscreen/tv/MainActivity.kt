@@ -25,10 +25,13 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aetherscreen.core.model.AppSettings
@@ -83,10 +86,29 @@ fun TvAetherTheme(content: @Composable () -> Unit) {
     )
 }
 
+fun launchOverlaySettings(context: Context) {
+    try {
+        val intent = Intent(
+            Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+            Uri.parse("package:${context.packageName}")
+        )
+        context.startActivity(intent)
+    } catch (e: Exception) {
+        try {
+            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+            context.startActivity(intent)
+        } catch (e2: Exception) {
+            val intent = Intent(Settings.ACTION_SETTINGS)
+            context.startActivity(intent)
+        }
+    }
+}
+
 @Composable
 fun TvMainScreen() {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    val lifecycleOwner = LocalLifecycleOwner.current
 
     val viewModel: TvAetherViewModel = viewModel(factory = object : androidx.lifecycle.ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -100,10 +122,82 @@ fun TvMainScreen() {
 
     var hasOverlayPermission by remember { mutableStateOf(Settings.canDrawOverlays(context)) }
     var isServiceRunning by remember { mutableStateOf(TvOverlayService.isRunning) }
+    var showPermissionGuide by remember { mutableStateOf(false) }
 
-    DisposableEffect(Unit) {
-        isServiceRunning = TvOverlayService.isRunning
-        onDispose {}
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                hasOverlayPermission = Settings.canDrawOverlays(context)
+                isServiceRunning = TvOverlayService.isRunning
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
+    if (showPermissionGuide) {
+        AlertDialog(
+            onDismissRequest = { showPermissionGuide = false },
+            confirmButton = {
+                TvFocusButton(
+                    text = "Open Settings",
+                    isSelected = true,
+                    onClick = {
+                        launchOverlaySettings(context)
+                        showPermissionGuide = false
+                    },
+                    modifier = Modifier.width(160.dp)
+                )
+            },
+            dismissButton = {
+                TvFocusButton(
+                    text = "Cancel",
+                    isSelected = false,
+                    onClick = { showPermissionGuide = false },
+                    modifier = Modifier.width(120.dp)
+                )
+            },
+            title = {
+                Text(
+                    text = "Overlay Permission Guide",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            },
+            text = {
+                Column {
+                    Text(
+                        text = "To dim the screen or turn off pixels while preserving audio, AetherScreen TV needs permission to draw over other apps.",
+                        fontSize = 13.sp,
+                        color = Color.LightGray,
+                        modifier = Modifier.padding(bottom = 12.dp)
+                    )
+                    Text(
+                        text = "Instructions for Android TV:",
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF00E5FF),
+                        modifier = Modifier.padding(bottom = 6.dp)
+                    )
+                    Text(
+                        text = "1. Click 'Open Settings' below.\n" +
+                               "2. If you are taken to a list, look for 'AetherScreen TV' and select it.\n" +
+                               "3. Turn the switch to 'Allowed' (or 'On').\n\n" +
+                               "Alternative path: Go to TV Home Settings -> Apps -> Special app access -> Display over other apps -> AetherScreen TV.",
+                        fontSize = 12.sp,
+                        color = Color.Gray,
+                        lineHeight = 16.sp
+                    )
+                }
+            },
+            containerColor = Color(0xFF14151F),
+            titleContentColor = Color.White,
+            textContentColor = Color.LightGray,
+            shape = RoundedCornerShape(16.dp)
+        )
     }
 
     Column(
@@ -149,11 +243,7 @@ fun TvMainScreen() {
                     onClick = {
                         hasOverlayPermission = Settings.canDrawOverlays(context)
                         if (!hasOverlayPermission) {
-                            val intent = Intent(
-                                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                                Uri.parse("package:${context.packageName}")
-                            )
-                            context.startActivity(intent)
+                            showPermissionGuide = true
                         } else {
                             val intent = Intent(context, TvOverlayService::class.java)
                             if (isServiceRunning) {

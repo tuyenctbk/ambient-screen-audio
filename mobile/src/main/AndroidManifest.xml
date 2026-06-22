@@ -18,6 +18,9 @@
     <!-- Wake lock to manage screen control -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <!-- Automotive OS Support -->
+    <uses-feature android:name="android.hardware.type.automotive" android:required="false"/>
+
     <application
         android:allowBackup="true"
         android:icon="@android:drawable/sym_def_app_icon"
@@ -25,6 +28,11 @@
         android:roundIcon="@android:drawable/sym_def_app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        <!-- Android Auto / Automotive OS Descriptor -->
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
 
         <!-- Resolve AdServices config conflict between AdMob and Firebase -->
         <property
