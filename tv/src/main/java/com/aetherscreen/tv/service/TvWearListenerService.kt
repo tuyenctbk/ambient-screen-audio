@@ -24,6 +24,15 @@ class TvWearListenerService : WearableListenerService() {
                     }
                 }
             }
+            "/query_status" -> {
+                sendStatus(messageEvent.sourceNodeId, TvOverlayService.isRunning, "TV")
+            }
         }
+    }
+
+    private fun sendStatus(nodeId: String, running: Boolean, deviceName: String) {
+        val statusStr = if (running) "active:$deviceName" else "inactive:$deviceName"
+        com.google.android.gms.wearable.Wearable.getMessageClient(this)
+            .sendMessage(nodeId, "/status", statusStr.toByteArray())
     }
 }

@@ -189,7 +189,7 @@ fun MainScreen() {
     }
 
     var hasOverlayPermission by remember { mutableStateOf(Settings.canDrawOverlays(context)) }
-    var isServiceRunning by remember { mutableStateOf(OverlayService.isRunning) }
+    val isServiceRunning by OverlayService.isRunningFlow.collectAsState()
     var installedApps by remember { mutableStateOf<List<AppInfoItem>>(emptyList()) }
     var updateAvailableVersion by remember { mutableStateOf<String?>(null) }
 
@@ -200,7 +200,6 @@ fun MainScreen() {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) {
                 hasOverlayPermission = Settings.canDrawOverlays(context)
-                isServiceRunning = OverlayService.isRunning
             }
         }
         lifecycleOwner.lifecycle.addObserver(observer)
@@ -373,13 +372,19 @@ fun MainScreen() {
                 IconButton(
                     onClick = {
                         hasOverlayPermission = Settings.canDrawOverlays(context)
-                        if (!hasOverlayPermission) return@IconButton
+                        if (!hasOverlayPermission) {
+                            android.widget.Toast.makeText(
+                                context,
+                                context.getString(R.string.permission_required_title),
+                                android.widget.Toast.LENGTH_SHORT
+                            ).show()
+                            return@IconButton
+                        }
 
                         val intent = Intent(context, OverlayService::class.java)
                         if (isServiceRunning) {
                             intent.action = OverlayService.ACTION_STOP
                             context.startService(intent)
-                            isServiceRunning = false
                         } else {
                             intent.action = OverlayService.ACTION_START
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -387,7 +392,6 @@ fun MainScreen() {
                             } else {
                                 context.startService(intent)
                             }
-                            isServiceRunning = true
                         }
                     },
                     modifier = Modifier

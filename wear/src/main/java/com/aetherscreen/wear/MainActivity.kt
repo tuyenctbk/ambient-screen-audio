@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -54,15 +55,12 @@ fun WearApp() {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
-    var deviceActive by remember { mutableStateOf(WearSyncService.isDeviceActive) }
-    var activeDeviceName by remember { mutableStateOf(WearSyncService.activeDeviceName) }
+    val deviceActive by WearSyncService.isDeviceActiveFlow.collectAsState()
+    val activeDeviceName by WearSyncService.activeDeviceNameFlow.collectAsState()
 
     LaunchedEffect(Unit) {
-        while (true) {
-            deviceActive = WearSyncService.isDeviceActive
-            activeDeviceName = WearSyncService.activeDeviceName
-            delay(1000)
-        }
+        // Query status from companion nodes on launch
+        sendMessage(context, coroutineScope, "/query_status", "")
     }
 
     MaterialTheme {

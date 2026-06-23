@@ -31,7 +31,11 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.google.android.gms.wearable.Wearable
 
 class OverlayService : Service() {
 
@@ -43,8 +47,14 @@ class OverlayService : Service() {
         const val ACTION_STOP = "com.aetherscreen.action.STOP"
         const val ACTION_ADD_10_MIN = "com.aetherscreen.action.ADD_10_MIN"
 
-        @Volatile
-        var isRunning = false
+        private val _isRunningFlow = MutableStateFlow(false)
+        val isRunningFlow: StateFlow<Boolean> = _isRunningFlow.asStateFlow()
+
+        var isRunning: Boolean
+            get() = _isRunningFlow.value
+            set(value) {
+                _isRunningFlow.value = value
+            }
     }
 
     private val serviceJob = SupervisorJob()
@@ -144,6 +154,7 @@ class OverlayService : Service() {
             overlayView = view
             isOverlayShowing = true
             updateOverlayAlpha()
+            broadcastStatusToWear(true)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -211,6 +222,7 @@ class OverlayService : Service() {
         }
         overlayView = null
         isOverlayShowing = false
+        broadcastStatusToWear(false)
     }
 
     private fun setupSensors(settings: AppSettings) {
@@ -349,6 +361,17 @@ class OverlayService : Service() {
         sensorController?.stopListening()
         timerJob?.cancel()
         serviceScope.cancel()
+    }
+
+    private fun broadcastStatusToWear(running: Boolean) {
+        val statusStr = if (running) "active:Phone" else "inactive:Phone"
+        val nodeClient = Wearable.getNodeClient(this)
+        val messageClient = Wearable.getMessageClient(this)
+        nodeClient.connectedNodes.addOnSuccessListener { nodes ->
+            for (node in nodes) {
+                messageClient.sendMessage(node.id, "/status", statusStr.toByteArray())
+            }
+        }
     }
 
     override fun onBind(intent: Intent?): IBinder? = null

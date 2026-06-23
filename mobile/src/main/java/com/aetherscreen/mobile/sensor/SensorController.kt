@@ -49,7 +49,7 @@ class SensorController(
 
                 lastAcceleration = currentAcceleration
                 currentAcceleration = sqrt(x * x + y * y + z * z)
-                val delta = currentAcceleration - lastAcceleration
+                val delta = kotlin.math.abs(currentAcceleration - lastAcceleration)
 
                 if (delta > shakeThreshold) {
                     onShakeDetected()

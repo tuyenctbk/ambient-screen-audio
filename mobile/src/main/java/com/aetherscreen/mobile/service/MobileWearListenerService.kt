@@ -28,6 +28,15 @@ class MobileWearListenerService : WearableListenerService() {
                 intent.action = OverlayService.ACTION_ADD_10_MIN
                 startService(intent)
             }
+            "/query_status" -> {
+                sendStatus(messageEvent.sourceNodeId, OverlayService.isRunning, "Phone")
+            }
         }
+    }
+
+    private fun sendStatus(nodeId: String, running: Boolean, deviceName: String) {
+        val statusStr = if (running) "active:$deviceName" else "inactive:$deviceName"
+        com.google.android.gms.wearable.Wearable.getMessageClient(this)
+            .sendMessage(nodeId, "/status", statusStr.toByteArray())
     }
 }

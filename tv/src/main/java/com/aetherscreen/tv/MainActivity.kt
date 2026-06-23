@@ -123,14 +123,13 @@ fun TvMainScreen() {
     val settings = settingsState.value
 
     var hasOverlayPermission by remember { mutableStateOf(Settings.canDrawOverlays(context)) }
-    var isServiceRunning by remember { mutableStateOf(TvOverlayService.isRunning) }
+    val isServiceRunning by TvOverlayService.isRunningFlow.collectAsState()
     var showPermissionGuide by remember { mutableStateOf(false) }
 
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) {
                 hasOverlayPermission = Settings.canDrawOverlays(context)
-                isServiceRunning = TvOverlayService.isRunning
             }
         }
         lifecycleOwner.lifecycle.addObserver(observer)
@@ -248,7 +247,6 @@ fun TvMainScreen() {
                             if (isServiceRunning) {
                                 intent.action = TvOverlayService.ACTION_STOP
                                 context.startService(intent)
-                                isServiceRunning = false
                             } else {
                                 intent.action = TvOverlayService.ACTION_START
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -256,7 +254,6 @@ fun TvMainScreen() {
                                 } else {
                                     context.startService(intent)
                                 }
-                                isServiceRunning = true
                             }
                         }
                     },

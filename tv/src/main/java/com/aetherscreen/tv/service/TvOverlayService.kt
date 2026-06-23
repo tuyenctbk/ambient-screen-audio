@@ -34,6 +34,10 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import kotlin.random.Random
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import com.google.android.gms.wearable.Wearable
 
 class TvOverlayService : Service() {
 
@@ -44,8 +48,14 @@ class TvOverlayService : Service() {
         const val ACTION_START = "com.aetherscreen.tv.action.START"
         const val ACTION_STOP = "com.aetherscreen.tv.action.STOP"
 
-        @Volatile
-        var isRunning = false
+        private val _isRunningFlow = MutableStateFlow(false)
+        val isRunningFlow: StateFlow<Boolean> = _isRunningFlow.asStateFlow()
+
+        var isRunning: Boolean
+            get() = _isRunningFlow.value
+            set(value) {
+                _isRunningFlow.value = value
+            }
     }
 
     private val serviceJob = SupervisorJob()
@@ -152,6 +162,7 @@ class TvOverlayService : Service() {
             windowManager.addView(container, params)
             overlayContainer = container
             isOverlayShowing = true
+            broadcastStatusToWear(true)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -249,6 +260,7 @@ class TvOverlayService : Service() {
         }
         overlayContainer = null
         isOverlayShowing = false
+        broadcastStatusToWear(false)
     }
 
     override fun onDestroy() {
@@ -258,6 +270,17 @@ class TvOverlayService : Service() {
         timerJob?.cancel()
         clockJob?.cancel()
         serviceScope.cancel()
+    }
+
+    private fun broadcastStatusToWear(running: Boolean) {
+        val statusStr = if (running) "active:TV" else "inactive:TV"
+        val nodeClient = Wearable.getNodeClient(this)
+        val messageClient = Wearable.getMessageClient(this)
+        nodeClient.connectedNodes.addOnSuccessListener { nodes ->
+            for (node in nodes) {
+                messageClient.sendMessage(node.id, "/status", statusStr.toByteArray())
+            }
+        }
     }
 
     override fun onBind(intent: Intent?): IBinder? = null
