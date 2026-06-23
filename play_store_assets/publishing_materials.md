@@ -91,3 +91,11 @@ Here are the actual captured assets ready to upload:
 *   **Screenshot 10: Tablet Target Media Applications**
     *   Text: *"Select background media and music applications"*
     ![Tablet Triggers](./tablet_screenshot_triggers.png)
+
+#### Wear OS Smartwatch Screenshots
+*   **Screenshot 11: Wear OS Dashboard (Idle)**
+    *   Text: *"Remote control interface for phone and TV"*
+    ![Wear OS Dashboard](./wear_screenshot_dashboard.png)
+*   **Screenshot 12: Wear OS Dashboard (Active)**
+    *   Text: *"Real-time remote toggle & connection state tracking"*
+    ![Wear OS Active](./wear_screenshot_active.png)
