@@ -144,6 +144,10 @@ class TvOverlayService : Service() {
             PixelFormat.TRANSLUCENT
         )
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            params.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
+
         try {
             windowManager.addView(container, params)
             overlayContainer = container

@@ -186,13 +186,19 @@ class OverlayService : Service() {
             flags = flags or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
         }
 
-        return WindowManager.LayoutParams(
+        val params = WindowManager.LayoutParams(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT,
             type,
             flags,
             PixelFormat.TRANSLUCENT
         )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            params.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
+
+        return params
     }
 
     private fun removeOverlay() {
