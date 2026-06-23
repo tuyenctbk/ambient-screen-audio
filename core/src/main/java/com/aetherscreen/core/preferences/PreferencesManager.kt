@@ -22,6 +22,7 @@ class PreferencesManager(private val context: Context) {
         private val KEY_DOUBLE_TAP_TO_WAKE_ENABLED = booleanPreferencesKey("double_tap_to_wake_enabled")
         private val KEY_BEDSIDE_CLOCK_ENABLED = booleanPreferencesKey("bedside_clock_enabled")
         private val KEY_TARGET_APPS = stringSetPreferencesKey("target_apps")
+        private val KEY_ONBOARDING_COMPLETED = booleanPreferencesKey("onboarding_completed")
     }
 
     val settingsFlow: Flow<AppSettings> = context.dataStore.data
@@ -35,7 +36,8 @@ class PreferencesManager(private val context: Context) {
                 shakeToWakeEnabled = preferences[KEY_SHAKE_TO_WAKE_ENABLED] ?: true,
                 doubleTapToWakeEnabled = preferences[KEY_DOUBLE_TAP_TO_WAKE_ENABLED] ?: true,
                 bedsideClockEnabled = preferences[KEY_BEDSIDE_CLOCK_ENABLED] ?: false,
-                targetApps = preferences[KEY_TARGET_APPS] ?: emptySet()
+                targetApps = preferences[KEY_TARGET_APPS] ?: emptySet(),
+                onboardingCompleted = preferences[KEY_ONBOARDING_COMPLETED] ?: false
             )
         }
 
@@ -98,6 +100,12 @@ class PreferencesManager(private val context: Context) {
         context.dataStore.edit { preferences ->
             val current = preferences[KEY_TARGET_APPS] ?: emptySet()
             preferences[KEY_TARGET_APPS] = current - packageName
+        }
+    }
+
+    suspend fun updateOnboardingCompleted(completed: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[KEY_ONBOARDING_COMPLETED] = completed
         }
     }
 }

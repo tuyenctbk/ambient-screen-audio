@@ -9,5 +9,6 @@ data class AppSettings(
     val shakeToWakeEnabled: Boolean = true, // Shake device to dismiss overlay
     val doubleTapToWakeEnabled: Boolean = true, // Double tap overlay to dismiss
     val bedsideClockEnabled: Boolean = false, // Floating dim clock on blackout screen
-    val targetApps: Set<String> = emptySet() // List of package names that trigger custom rules
+    val targetApps: Set<String> = emptySet(), // List of package names that trigger custom rules
+    val onboardingCompleted: Boolean = false
 )

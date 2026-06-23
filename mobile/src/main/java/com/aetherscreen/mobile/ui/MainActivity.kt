@@ -102,6 +102,10 @@ class AetherViewModel(context: Context) : ViewModel() {
             }
         }
     }
+
+    fun updateOnboardingCompleted(scope: kotlinx.coroutines.CoroutineScope, completed: Boolean) {
+        scope.launch { preferencesManager.updateOnboardingCompleted(completed) }
+    }
 }
 
 // --- ACTIVITY ---
@@ -170,6 +174,17 @@ fun MainScreen() {
     
     val settingsState = viewModel.settingsFlow.collectAsState(initial = AppSettings())
     val settings = settingsState.value
+
+    if (!settings.onboardingCompleted) {
+        OnboardingScreen(
+            settings = settings,
+            viewModel = viewModel,
+            onFinished = {
+                viewModel.updateOnboardingCompleted(scope, true)
+            }
+        )
+        return
+    }
 
     var hasOverlayPermission by remember { mutableStateOf(Settings.canDrawOverlays(context)) }
     var isServiceRunning by remember { mutableStateOf(OverlayService.isRunning) }
@@ -758,3 +773,405 @@ fun checkForUpdates(context: Context, onUpdateRequired: (String) -> Unit) {
         e.printStackTrace()
     }
 }
+
+@Composable
+fun OnboardingScreen(
+    settings: AppSettings,
+    viewModel: AetherViewModel,
+    onFinished: () -> Unit
+) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    var currentSlide by remember { mutableStateOf(0) }
+    val totalSlides = 3
+
+    var hasOverlayPermission by remember { mutableStateOf(Settings.canDrawOverlays(context)) }
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                hasOverlayPermission = Settings.canDrawOverlays(context)
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF0F1016))
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        // Top branding
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(top = 16.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.Lock,
+                contentDescription = null,
+                tint = Color(0xFF8B5CF6),
+                modifier = Modifier.size(24.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = "AETHER SCREEN",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.ExtraBold,
+                letterSpacing = 2.sp,
+                color = Color.White
+            )
+        }
+
+        // Slide Content Area
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
+                .padding(vertical = 24.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            when (currentSlide) {
+                0 -> WelcomeSlide()
+                1 -> GesturesSlide(settings, viewModel, scope)
+                2 -> PermissionSlide(context, hasOverlayPermission)
+            }
+        }
+
+        // Navigation Footer
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            // Dot Indicators
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(bottom = 24.dp)
+            ) {
+                repeat(totalSlides) { index ->
+                    val isSelected = index == currentSlide
+                    Box(
+                        modifier = Modifier
+                            .padding(horizontal = 4.dp)
+                            .size(if (isSelected) 10.dp else 8.dp)
+                            .clip(CircleShape)
+                            .background(if (isSelected) Color(0xFF8B5CF6) else Color.Gray.copy(alpha = 0.5f))
+                    )
+                }
+            }
+
+            // Buttons
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // Back Button
+                if (currentSlide > 0) {
+                    TextButton(onClick = { currentSlide-- }) {
+                        Text("BACK", color = Color.Gray, fontWeight = FontWeight.Bold)
+                    }
+                } else {
+                    Spacer(modifier = Modifier.width(48.dp)) // Placeholder to balance
+                }
+
+                // Next / Start Button
+                if (currentSlide < totalSlides - 1) {
+                    Button(
+                        onClick = { currentSlide++ },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF8B5CF6))
+                    ) {
+                        Text("NEXT", color = Color.White, fontWeight = FontWeight.Bold)
+                    }
+                } else {
+                    Button(
+                        onClick = onFinished,
+                        enabled = hasOverlayPermission,
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFFD946EF),
+                            disabledContainerColor = Color(0xFF1E1F29)
+                        )
+                    ) {
+                        Text(
+                            text = "GET STARTED",
+                            color = if (hasOverlayPermission) Color.White else Color.Gray,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun WelcomeSlide() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        // Glowing Icon Box
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .size(120.dp)
+                .shadow(16.dp, CircleShape, ambientColor = Color(0xFF8B5CF6), spotColor = Color(0xFF8B5CF6))
+                .background(
+                    Brush.radialGradient(
+                        colors = listOf(Color(0xFF8B5CF6).copy(alpha = 0.2f), Color.Transparent)
+                    ),
+                    CircleShape
+                )
+        ) {
+            Icon(
+                imageVector = Icons.Default.PlayArrow,
+                contentDescription = null,
+                tint = Color(0xFF8B5CF6),
+                modifier = Modifier.size(64.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        Text(
+            text = "Welcome to AetherScreen",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.White,
+            textAlign = TextAlign.Center
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Text(
+            text = "Preserve audio and save battery on OLED screens. Fully blackout or dim your display while keeping YouTube, browsers, or music players running in the background.",
+            fontSize = 14.sp,
+            color = Color.Gray,
+            textAlign = TextAlign.Center,
+            lineHeight = 20.sp,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+    }
+}
+
+@Composable
+fun GesturesSlide(
+    settings: AppSettings,
+    viewModel: AetherViewModel,
+    scope: kotlinx.coroutines.CoroutineScope
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Text(
+            text = "Screen Wake Gestures",
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.White,
+            textAlign = TextAlign.Center
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            text = "When the screen is blacked out, dismiss the overlay and wake the screen using these interactive gestures:",
+            fontSize = 13.sp,
+            color = Color.Gray,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = Color(0xFF16171E)),
+            shape = RoundedCornerShape(16.dp)
+        ) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                // Double tap
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(Icons.Default.Refresh, contentDescription = null, tint = Color(0xFF8B5CF6))
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column {
+                            Text("Double-Tap to Wake", fontWeight = FontWeight.Bold, color = Color.White, fontSize = 14.sp)
+                            Text("Tap twice anywhere to wake screen", color = Color.Gray, fontSize = 11.sp)
+                        }
+                    }
+                    Switch(
+                        checked = settings.doubleTapToWakeEnabled,
+                        onCheckedChange = { viewModel.updateDoubleTapToWake(scope, it) }
+                    )
+                }
+
+                Divider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
+
+                // Shake to Wake
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(Icons.Default.Build, contentDescription = null, tint = Color(0xFF8B5CF6))
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column {
+                            Text("Shake to Wake", fontWeight = FontWeight.Bold, color = Color.White, fontSize = 14.sp)
+                            Text("Shake device vigorously to wake screen", color = Color.Gray, fontSize = 11.sp)
+                        }
+                    }
+                    Switch(
+                        checked = settings.shakeToWakeEnabled,
+                        onCheckedChange = { viewModel.updateShakeToWake(scope, it) }
+                    )
+                }
+
+                Divider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
+
+                // Pocket Mode
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(Icons.Default.Settings, contentDescription = null, tint = Color(0xFF8B5CF6))
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column {
+                            Text("Auto Pocket Mode", fontWeight = FontWeight.Bold, color = Color.White, fontSize = 14.sp)
+                            Text("Auto blackout using proximity sensor", color = Color.Gray, fontSize = 11.sp)
+                        }
+                    }
+                    Switch(
+                        checked = settings.pocketModeEnabled,
+                        onCheckedChange = { viewModel.updatePocketMode(scope, it) }
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun PermissionSlide(
+    context: Context,
+    hasOverlayPermission: Boolean
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Text(
+            text = "Overlay Permission",
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.White,
+            textAlign = TextAlign.Center
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Text(
+            text = "AetherScreen needs display overlay permissions to show the black layer over other active applications.",
+            fontSize = 13.sp,
+            color = Color.Gray,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        if (hasOverlayPermission) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .size(80.dp)
+                    .background(Color(0xFF1E3A1E), CircleShape)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Check,
+                    contentDescription = "Granted",
+                    tint = Color.Green,
+                    modifier = Modifier.size(40.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "Permission Granted!",
+                color = Color.Green,
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp
+            )
+        } else {
+            Button(
+                onClick = {
+                    val intent = Intent(
+                        Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:${context.packageName}")
+                    )
+                    context.startActivity(intent)
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF25C5C))
+            ) {
+                Icon(imageVector = Icons.Default.Share, contentDescription = null, tint = Color.White)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("Grant Overlay Permission", color = Color.White, fontWeight = FontWeight.Bold)
+            }
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // Xiaomi / Custom ROM Guide Card
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = Color(0x1F8B5CF6)),
+            border = BorderStroke(1.dp, Color(0xFF8B5CF6).copy(alpha = 0.3f)),
+            shape = RoundedCornerShape(12.dp)
+        ) {
+            Row(
+                modifier = Modifier.padding(12.dp),
+                verticalAlignment = Alignment.Top
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Info,
+                    contentDescription = null,
+                    tint = Color(0xFF8B5CF6),
+                    modifier = Modifier.size(20.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = "Xiaomi / Redmi / MIUI Users:",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 12.sp
+                    )
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Text(
+                        text = "Go to App Info -> Other Permissions -> enable 'Display pop-up windows while running in the background' if overlays do not show.",
+                        color = Color.LightGray,
+                        fontSize = 11.sp,
+                        lineHeight = 15.sp
+                    )
+                }
+            }
+        }
+    }
+}
+
