@@ -460,7 +460,7 @@ fun MainScreen() {
                         }
                     }
 
-                    Divider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
+                    HorizontalDivider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -545,7 +545,7 @@ fun MainScreen() {
                         modifier = Modifier.padding(bottom = 12.dp)
                     )
 
-                    Divider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
+                    HorizontalDivider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -565,7 +565,7 @@ fun MainScreen() {
                         modifier = Modifier.padding(bottom = 12.dp)
                     )
 
-                    Divider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
+                    HorizontalDivider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -1019,7 +1019,7 @@ fun GesturesSlide(
                     )
                 }
 
-                Divider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
+                HorizontalDivider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
 
                 // Shake to Wake
                 Row(
@@ -1041,7 +1041,7 @@ fun GesturesSlide(
                     )
                 }
 
-                Divider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
+                HorizontalDivider(color = Color(0x1AFFFFFF), modifier = Modifier.padding(vertical = 12.dp))
 
                 // Pocket Mode
                 Row(
