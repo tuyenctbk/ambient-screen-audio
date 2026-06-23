@@ -36,7 +36,7 @@
     <string name="onboarding_gestures_title">Gestes de réveil de l\'écran</string>
     <string name="onboarding_gestures_desc">Lorsque l\'écran est éteint, fermez la superposition et réveillez l\'écran à l\'aide de ces gestes actifs :</string>
     <string name="onboarding_double_tap_title">Double-tap pour réveiller</string>
-    <string name="onboarding_double_tap_desc">Appuyez deux fois n\'importe où pour réveiller l'écran</string>
+    <string name="onboarding_double_tap_desc">Appuyez deux fois n\'importe où pour réveiller l\'écran</string>
     <string name="onboarding_shake_title">Secouer pour réveiller</string>
     <string name="onboarding_shake_desc">Secouez vigoureusement l\'appareil pour réveiller l\'écran</string>
     <string name="onboarding_pocket_title">Mode poche automatique</string>

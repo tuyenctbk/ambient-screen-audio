@@ -385,7 +385,6 @@ fun TvFocusCard(
     Box(
         modifier = modifier
             .onFocusChanged { isFocused = it.isFocused }
-            .focusable()
             .clip(RoundedCornerShape(16.dp))
             .background(Color(0xFF1E1F29))
             .border(2.dp, borderColor, RoundedCornerShape(16.dp))
@@ -413,7 +412,6 @@ fun TvFocusButton(
         contentAlignment = Alignment.Center,
         modifier = modifier
             .onFocusChanged { isFocused = it.isFocused }
-            .focusable()
             .clip(RoundedCornerShape(8.dp))
             .background(containerColor)
             .border(1.dp, if (isFocused) Color.White else Color.Transparent, RoundedCornerShape(8.dp))
