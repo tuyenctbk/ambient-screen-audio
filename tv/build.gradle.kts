@@ -10,7 +10,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.aetherscreen.tv"
+        applicationId = "com.aetherscreen.mobile"
         minSdk = 24
         targetSdk = 37
         versionCode = 1
