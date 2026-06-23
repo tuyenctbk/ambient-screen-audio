@@ -150,11 +150,22 @@ private fun sendMessage(
         val nodeClient = Wearable.getNodeClient(context)
         val messageClient = Wearable.getMessageClient(context)
         nodeClient.connectedNodes.addOnSuccessListener { nodes ->
+            android.util.Log.d("AetherScreenWear", "Connected nodes count: ${nodes.size}")
             for (node in nodes) {
+                android.util.Log.d("AetherScreenWear", "Sending message $path to node: ${node.id} (${node.displayName})")
                 messageClient.sendMessage(node.id, path, data.toByteArray())
+                    .addOnSuccessListener {
+                        android.util.Log.d("AetherScreenWear", "Message $path sent successfully to ${node.displayName}")
+                    }
+                    .addOnFailureListener {
+                        android.util.Log.e("AetherScreenWear", "Failed to send message $path to ${node.displayName}: ${it.message}")
+                    }
             }
+        }.addOnFailureListener {
+            android.util.Log.e("AetherScreenWear", "Failed to fetch connected nodes: ${it.message}")
         }
     } catch (e: Exception) {
+        android.util.Log.e("AetherScreenWear", "Error in sendMessage: ${e.message}")
         e.printStackTrace()
     }
 }

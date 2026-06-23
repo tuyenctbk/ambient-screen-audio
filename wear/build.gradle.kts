@@ -8,7 +8,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.aetherscreen.mobile"
+        applicationId = "com.aetherscreen"
         minSdk = 30 // Wear OS 3.0+
         targetSdk = 37
         versionCode = 1
