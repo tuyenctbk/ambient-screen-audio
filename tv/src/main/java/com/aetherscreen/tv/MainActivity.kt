@@ -416,7 +416,7 @@ fun TvFocusButton(
             .background(containerColor)
             .border(1.dp, if (isFocused) Color.White else Color.Transparent, RoundedCornerShape(8.dp))
             .clickable { onClick() }
-            .padding(vertical = 10.dp)
+            .padding(horizontal = 16.dp, vertical = 10.dp)
     ) {
         Text(
             text = text,
