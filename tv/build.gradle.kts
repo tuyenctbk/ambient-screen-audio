@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 android {
@@ -20,8 +22,18 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("/Users/user/AndroidStudioProjects/Games/Snake/dpad_arcade_release.jks")
+            storePassword = "dpadhero123"
+            keyAlias = "dpad_hero_alias"
+            keyPassword = "dpadhero123"
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

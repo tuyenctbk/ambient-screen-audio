@@ -20,8 +20,18 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("/Users/user/AndroidStudioProjects/Games/Snake/dpad_arcade_release.jks")
+            storePassword = "dpadhero123"
+            keyAlias = "dpad_hero_alias"
+            keyPassword = "dpadhero123"
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
