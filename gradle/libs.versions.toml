@@ -12,6 +12,7 @@ playReviewVersion = "2.0.2"
 kotlinCompose = "2.0.0"
 firebaseVersion = "33.1.0"
 admobVersion = "23.0.0"
+googleServices = "4.4.2"
 
 # Compose Versions
 composeBom = "2024.02.01"
@@ -81,3 +82,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinCompose" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
