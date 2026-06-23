@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AetherScreen TV</string>
+    <string name="app_subtitle">Tắt màn hình &amp; tiết kiệm bóng đèn OLED trong khi vẫn giữ âm thanh hoạt động.</string>
+    <string name="stop_blackout">BẬT LẠI MÀN HÌNH</string>
+    <string name="start_blackout">TẮT MÀN HÌNH</string>
+    <string name="active_desc">Nhấn nút bất kỳ trên điều khiển TV để quay lại.</string>
+    <string name="inactive_desc">Làm mờ màn hình. Nhấn phím trên điều khiển TV để thoát.</string>
+    <string name="permission_required">Yêu cầu cấp quyền: Click để thực hiện.</string>
+    <string name="sleep_timer">Hẹn giờ tắt nhạc tự động</string>
+    <string name="bedside_screensaver">Chế độ đồng hồ chờ</string>
+    <string name="show_clock">Hiển thị đồng hồ di chuyển mờ</string>
+    <string name="enabled">Đã bật</string>
+    <string name="disabled">Đã tắt</string>
+    <string name="tip">Mẹo: Hãy bật nhạc/video trên ứng dụng yêu thích trước, sau đó mở AetherScreen TV để tắt màn hình.</string>
+    <string name="preset_off">Tắt</string>
+    <string name="preset_minutes">%1$d phút</string>
+    <string name="permission_guide_title">Hướng dẫn cấp quyền hiển thị</string>
+    <string name="permission_guide_desc">Để làm mờ màn hình hoặc tắt các điểm ảnh trong khi vẫn giữ âm thanh phát nền, AetherScreen TV cần quyền vẽ trên các ứng dụng khác.</string>
+    <string name="instructions_header">Hướng dẫn cho Android TV:</string>
+    <string name="instructions_body">1. Click nút \'Cài đặt\' bên dưới.\n2. Ở danh sách ứng dụng hiện ra, chọn ứng dụng \'AetherScreen TV\'.\n3. Bật công tắc cho phép vẽ trên ứng dụng khác sang trạng thái bật.\n\nĐường dẫn thay thế: Vào Cài đặt TV -&gt; Ứng dụng -&gt; Quyền truy cập đặc biệt -&gt; Hiển thị trên ứng dụng khác -&gt; Chọn AetherScreen TV.</string>
+    <string name="btn_open_settings">Cài đặt</string>
+    <string name="btn_cancel">Hủy</string>
+</resources>

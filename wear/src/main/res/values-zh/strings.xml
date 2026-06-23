@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="toggle_phone">切换手机黑屏</string>
+    <string name="toggle_tv">切换电视黑屏</string>
+    <string name="add_minutes">+10 分钟</string>
+    <string name="devices_off">设备：已关闭</string>
+    <string name="device_on">%1$s: 已开启</string>
+</resources>

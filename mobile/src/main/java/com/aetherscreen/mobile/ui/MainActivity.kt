@@ -45,6 +45,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aetherscreen.core.model.AppSettings
 import com.aetherscreen.core.preferences.PreferencesManager
+import com.aetherscreen.mobile.R
+import androidx.compose.ui.res.stringResource
 import com.aetherscreen.mobile.service.OverlayService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -236,7 +238,7 @@ fun MainScreen() {
         item {
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "AETHER SCREEN",
+                text = stringResource(R.string.app_name),
                 fontSize = 28.sp,
                 fontWeight = FontWeight.ExtraBold,
                 letterSpacing = 4.sp,
@@ -247,7 +249,7 @@ fun MainScreen() {
                 )
             )
             Text(
-                text = "Ambient Screen & Audio Preservation",
+                text = stringResource(R.string.app_subtitle),
                 fontSize = 12.sp,
                 color = Color.Gray,
                 modifier = Modifier.padding(top = 4.dp)
@@ -272,14 +274,14 @@ fun MainScreen() {
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "New Update Available!",
+                                text = stringResource(R.string.new_update_title),
                                 fontWeight = FontWeight.Bold,
                                 color = Color(0xFF00E5FF),
                                 fontSize = 16.sp
                             )
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
-                                text = "Version $version is now available. Update for new optimization features.",
+                                text = stringResource(R.string.new_update_desc, version),
                                 fontSize = 12.sp,
                                 color = Color.White
                             )
@@ -290,7 +292,7 @@ fun MainScreen() {
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00E5FF)),
                             contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
                         ) {
-                            Text("Update", color = Color.Black, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.update), color = Color.Black, fontSize = 12.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -309,14 +311,14 @@ fun MainScreen() {
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
-                            text = "Permission Required",
+                            text = stringResource(R.string.permission_required_title),
                             fontWeight = FontWeight.Bold,
                             color = Color(0xFFFF8B8B),
                             fontSize = 16.sp
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "AetherScreen needs permission to draw over other apps to dim the screen and prevent OLED burn-in.",
+                            text = stringResource(R.string.permission_required_desc),
                             fontSize = 13.sp,
                             color = Color.White
                         )
@@ -331,7 +333,7 @@ fun MainScreen() {
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF25C5C))
                         ) {
-                            Text("Grant Permission", color = Color.White)
+                            Text(stringResource(R.string.grant_permission), color = Color.White)
                         }
                     }
                 }
@@ -408,7 +410,7 @@ fun MainScreen() {
             }
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                text = if (isServiceRunning) "AETHER SCREEN ACTIVE" else "AETHER SCREEN OFF",
+                text = if (isServiceRunning) stringResource(R.string.aether_screen_active) else stringResource(R.string.aether_screen_off),
                 fontWeight = FontWeight.Bold,
                 fontSize = 14.sp,
                 color = if (isServiceRunning) Color(0xFFD946EF) else Color.Gray,
@@ -419,21 +421,21 @@ fun MainScreen() {
 
         // DIM CONTROL CARD
         item {
-            CardSection(title = "Dim & Blackout Controls", icon = Icons.Default.Settings) {
+            CardSection(title = stringResource(R.string.dim_blackout_controls_title), icon = Icons.Default.Settings) {
                 Column {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Dim Display Only", color = Color.White)
+                        Text(stringResource(R.string.dim_display_only), color = Color.White)
                         Switch(
                             checked = !settings.isBlackoutMode,
                             onCheckedChange = { viewModel.updateIsBlackoutMode(scope, !it) }
                         )
                     }
                     Text(
-                        text = "If enabled, you can still view the app underneath. If disabled, screen goes pure black.",
+                        text = stringResource(R.string.dim_display_only_desc),
                         fontSize = 11.sp,
                         color = Color.Gray,
                         modifier = Modifier.padding(bottom = 12.dp)
@@ -445,7 +447,7 @@ fun MainScreen() {
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Dim Opacity Level", color = Color.LightGray)
+                                Text(stringResource(R.string.dim_opacity_level), color = Color.LightGray)
                                 Text("${(settings.dimLevel * 100).toInt()}%", fontWeight = FontWeight.Bold, color = Color(0xFF8B5CF6))
                             }
                             Slider(
@@ -467,14 +469,14 @@ fun MainScreen() {
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Touch Block / Screen Lock", color = Color.White)
+                        Text(stringResource(R.string.touch_block_title), color = Color.White)
                         Switch(
                             checked = settings.lockTouch,
                             onCheckedChange = { viewModel.updateLockTouch(scope, it) }
                         )
                     }
                     Text(
-                        text = "Ignores accidental touches while active (pocket mode). Dismiss with double-tap gesture.",
+                        text = stringResource(R.string.touch_block_desc),
                         fontSize = 11.sp,
                         color = Color.Gray
                     )
@@ -484,10 +486,10 @@ fun MainScreen() {
 
         // SLEEP TIMER PRESETS CARD
         item {
-            CardSection(title = "Auto-Pause Sleep Timer", icon = Icons.Default.PlayArrow) {
+            CardSection(title = stringResource(R.string.sleep_timer_title), icon = Icons.Default.PlayArrow) {
                 Column {
                     Text(
-                        text = "Fades screen out and pauses background audio after time elapsed.",
+                        text = stringResource(R.string.sleep_timer_desc),
                         fontSize = 12.sp,
                         color = Color.LightGray,
                         modifier = Modifier.padding(bottom = 12.dp)
@@ -511,7 +513,7 @@ fun MainScreen() {
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    text = if (minutes == 0) "Off" else "${minutes}m",
+                                    text = if (minutes == 0) stringResource(R.string.preset_off) else stringResource(R.string.preset_minutes, minutes),
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 13.sp,
                                     color = if (isSelected) Color.White else Color.Gray
@@ -525,21 +527,21 @@ fun MainScreen() {
 
         // SENSOR CONTROLS CARD
         item {
-            CardSection(title = "Intelligent Triggers", icon = Icons.Default.Build) {
+            CardSection(title = stringResource(R.string.intelligent_triggers_title), icon = Icons.Default.Build) {
                 Column {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Auto Pocket/Face-down Mode", color = Color.White)
+                        Text(stringResource(R.string.pocket_mode_title), color = Color.White)
                         Switch(
                             checked = settings.pocketModeEnabled,
                             onCheckedChange = { viewModel.updatePocketMode(scope, it) }
                         )
                     }
                     Text(
-                        text = "Automatically blacks out display matrix when proximity sensor is covered (face down on table or inside pocket).",
+                        text = stringResource(R.string.pocket_mode_desc),
                         fontSize = 11.sp,
                         color = Color.Gray,
                         modifier = Modifier.padding(bottom = 12.dp)
@@ -552,14 +554,14 @@ fun MainScreen() {
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Shake to Wake/Dismiss", color = Color.White)
+                        Text(stringResource(R.string.shake_wake_title), color = Color.White)
                         Switch(
                             checked = settings.shakeToWakeEnabled,
                             onCheckedChange = { viewModel.updateShakeToWake(scope, it) }
                         )
                     }
                     Text(
-                        text = "Shake the phone vigorously to dismiss overlay.",
+                        text = stringResource(R.string.shake_wake_desc),
                         fontSize = 11.sp,
                         color = Color.Gray,
                         modifier = Modifier.padding(bottom = 12.dp)
@@ -572,7 +574,7 @@ fun MainScreen() {
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Double-Tap Screen to Wake", color = Color.White)
+                        Text(stringResource(R.string.double_tap_wake_title), color = Color.White)
                         Switch(
                             checked = settings.doubleTapToWakeEnabled,
                             onCheckedChange = { viewModel.updateDoubleTapToWake(scope, it) }
@@ -584,10 +586,10 @@ fun MainScreen() {
 
         // SUPPORT & RATING CARD
         item {
-            CardSection(title = "Support & Feedback", icon = Icons.Default.Star) {
+            CardSection(title = stringResource(R.string.support_feedback_title), icon = Icons.Default.Star) {
                 Column {
                     Text(
-                        text = "Love using AetherScreen? Help us improve by leaving a rating or feedback!",
+                        text = stringResource(R.string.support_feedback_desc),
                         fontSize = 12.sp,
                         color = Color.LightGray,
                         modifier = Modifier.padding(bottom = 12.dp)
@@ -599,7 +601,7 @@ fun MainScreen() {
                     ) {
                         Icon(imageVector = Icons.Default.Star, contentDescription = null)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Rate AetherScreen", fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.rate_aetherscreen), fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -609,7 +611,7 @@ fun MainScreen() {
         item {
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                text = "Target Media Applications",
+                text = stringResource(R.string.target_media_apps),
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp,
                 color = Color.White,
@@ -821,7 +823,7 @@ fun OnboardingScreen(
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "AETHER SCREEN",
+                text = stringResource(R.string.app_name),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.ExtraBold,
                 letterSpacing = 2.sp,
@@ -876,7 +878,7 @@ fun OnboardingScreen(
                 // Back Button
                 if (currentSlide > 0) {
                     TextButton(onClick = { currentSlide-- }) {
-                        Text("BACK", color = Color.Gray, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.btn_back), color = Color.Gray, fontWeight = FontWeight.Bold)
                     }
                 } else {
                     Spacer(modifier = Modifier.width(48.dp)) // Placeholder to balance
@@ -888,7 +890,7 @@ fun OnboardingScreen(
                         onClick = { currentSlide++ },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF8B5CF6))
                     ) {
-                        Text("NEXT", color = Color.White, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.btn_next), color = Color.White, fontWeight = FontWeight.Bold)
                     }
                 } else {
                     Button(
@@ -900,7 +902,7 @@ fun OnboardingScreen(
                         )
                     ) {
                         Text(
-                            text = "GET STARTED",
+                            text = stringResource(R.string.btn_get_started),
                             color = if (hasOverlayPermission) Color.White else Color.Gray,
                             fontWeight = FontWeight.Bold
                         )
@@ -942,7 +944,7 @@ fun WelcomeSlide() {
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(
-            text = "Welcome to AetherScreen",
+            text = stringResource(R.string.onboarding_welcome_title),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White,
@@ -952,7 +954,7 @@ fun WelcomeSlide() {
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "Preserve audio and save battery on OLED screens. Fully blackout or dim your display while keeping YouTube, browsers, or music players running in the background.",
+            text = stringResource(R.string.onboarding_welcome_desc),
             fontSize = 14.sp,
             color = Color.Gray,
             textAlign = TextAlign.Center,
@@ -974,7 +976,7 @@ fun GesturesSlide(
         modifier = Modifier.fillMaxWidth()
     ) {
         Text(
-            text = "Screen Wake Gestures",
+            text = stringResource(R.string.onboarding_gestures_title),
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White,
@@ -984,7 +986,7 @@ fun GesturesSlide(
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "When the screen is blacked out, dismiss the overlay and wake the screen using these interactive gestures:",
+            text = stringResource(R.string.onboarding_gestures_desc),
             fontSize = 13.sp,
             color = Color.Gray,
             textAlign = TextAlign.Center,
@@ -1009,8 +1011,8 @@ fun GesturesSlide(
                         Icon(Icons.Default.Refresh, contentDescription = null, tint = Color(0xFF8B5CF6))
                         Spacer(modifier = Modifier.width(12.dp))
                         Column {
-                            Text("Double-Tap to Wake", fontWeight = FontWeight.Bold, color = Color.White, fontSize = 14.sp)
-                            Text("Tap twice anywhere to wake screen", color = Color.Gray, fontSize = 11.sp)
+                            Text(stringResource(R.string.onboarding_double_tap_title), fontWeight = FontWeight.Bold, color = Color.White, fontSize = 14.sp)
+                            Text(stringResource(R.string.onboarding_double_tap_desc), color = Color.Gray, fontSize = 11.sp)
                         }
                     }
                     Switch(
@@ -1031,8 +1033,8 @@ fun GesturesSlide(
                         Icon(Icons.Default.Build, contentDescription = null, tint = Color(0xFF8B5CF6))
                         Spacer(modifier = Modifier.width(12.dp))
                         Column {
-                            Text("Shake to Wake", fontWeight = FontWeight.Bold, color = Color.White, fontSize = 14.sp)
-                            Text("Shake device vigorously to wake screen", color = Color.Gray, fontSize = 11.sp)
+                            Text(stringResource(R.string.onboarding_shake_title), fontWeight = FontWeight.Bold, color = Color.White, fontSize = 14.sp)
+                            Text(stringResource(R.string.onboarding_shake_desc), color = Color.Gray, fontSize = 11.sp)
                         }
                     }
                     Switch(
@@ -1053,8 +1055,8 @@ fun GesturesSlide(
                         Icon(Icons.Default.Settings, contentDescription = null, tint = Color(0xFF8B5CF6))
                         Spacer(modifier = Modifier.width(12.dp))
                         Column {
-                            Text("Auto Pocket Mode", fontWeight = FontWeight.Bold, color = Color.White, fontSize = 14.sp)
-                            Text("Auto blackout using proximity sensor", color = Color.Gray, fontSize = 11.sp)
+                            Text(stringResource(R.string.onboarding_pocket_title), fontWeight = FontWeight.Bold, color = Color.White, fontSize = 14.sp)
+                            Text(stringResource(R.string.onboarding_pocket_desc), color = Color.Gray, fontSize = 11.sp)
                         }
                     }
                     Switch(
@@ -1078,7 +1080,7 @@ fun PermissionSlide(
         modifier = Modifier.fillMaxWidth()
     ) {
         Text(
-            text = "Overlay Permission",
+            text = stringResource(R.string.onboarding_permission_title),
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White,
@@ -1088,7 +1090,7 @@ fun PermissionSlide(
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "AetherScreen needs display overlay permissions to show the black layer over other active applications.",
+            text = stringResource(R.string.onboarding_permission_desc),
             fontSize = 13.sp,
             color = Color.Gray,
             textAlign = TextAlign.Center,
@@ -1113,7 +1115,7 @@ fun PermissionSlide(
             }
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Permission Granted!",
+                text = stringResource(R.string.onboarding_permission_granted),
                 color = Color.Green,
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp
@@ -1131,7 +1133,7 @@ fun PermissionSlide(
             ) {
                 Icon(imageVector = Icons.Default.Share, contentDescription = null, tint = Color.White)
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Grant Overlay Permission", color = Color.White, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.onboarding_grant_permission), color = Color.White, fontWeight = FontWeight.Bold)
             }
         }
 
@@ -1157,14 +1159,14 @@ fun PermissionSlide(
                 Spacer(modifier = Modifier.width(8.dp))
                 Column {
                     Text(
-                        text = "Xiaomi / Redmi / MIUI Users:",
+                        text = stringResource(R.string.onboarding_xiaomi_title),
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
                         fontSize = 12.sp
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "Go to App Info -> Other Permissions -> enable 'Display pop-up windows while running in the background' if overlays do not show.",
+                        text = stringResource(R.string.onboarding_xiaomi_desc),
                         color = Color.LightGray,
                         fontSize = 11.sp,
                         lineHeight = 15.sp

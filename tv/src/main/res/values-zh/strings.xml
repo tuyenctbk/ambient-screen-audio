@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AetherScreen TV</string>
+    <string name="app_subtitle">在保持音频播放的同时，关闭屏幕矩阵并节省 OLED 像素。</string>
+    <string name="stop_blackout">开启屏幕</string>
+    <string name="start_blackout">关闭屏幕</string>
+    <string name="active_desc">按遥控器上的任意键返回。</string>
+    <string name="inactive_desc">使屏幕变暗。按遥控器键关闭。</string>
+    <string name="permission_required">需要权限：点击授予。</string>
+    <string name="sleep_timer">睡眠自动暂停定时器</string>
+    <string name="bedside_screensaver">床头时钟遮罩模式</string>
+    <string name="show_clock">显示微亮移动时钟</string>
+    <string name="enabled">已启用</string>
+    <string name="disabled">已禁用</string>
+    <string name="tip">提示：先在您喜欢的应用中开始播放音频，然后打开 AetherScreen TV 以降低屏幕亮度。</string>
+    <string name="preset_off">关闭</string>
+    <string name="preset_minutes">%1$d 分钟</string>
+    <string name="permission_guide_title">悬浮窗权限说明</string>
+    <string name="permission_guide_desc">要在保留音频的同时使屏幕变暗或关闭像素，AetherScreen TV 需要悬浮窗权限。</string>
+    <string name="instructions_header">Android TV 操作步骤：</string>
+    <string name="instructions_body">1. 点击下方的“前往设置”。\n2. 在应用列表中找到“AetherScreen TV”并选择它。\n3. 将开关设置为“允许”（或“开启”）。\n\n其他路径：前往 TV 系统设置 -&gt; 应用 -&gt; 特殊应用权限 -&gt; 在其他应用上层显示 -&gt; 开启 AetherScreen TV。</string>
+    <string name="btn_open_settings">前往设置</string>
+    <string name="btn_cancel">取消</string>
+</resources>

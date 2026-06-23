@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="app_subtitle">Ambient Screen &amp; Audio Preservation</string>
+    <string name="new_update_title">New Update Available!</string>
+    <string name="new_update_desc">Version %1$s is now available. Update for new optimization features.</string>
+    <string name="update">Update</string>
+    <string name="permission_required_title">Permission Required</string>
+    <string name="permission_required_desc">AetherScreen needs permission to draw over other apps to dim the screen and prevent OLED burn-in.</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="aether_screen_active">AETHER SCREEN ACTIVE</string>
+    <string name="aether_screen_off">AETHER SCREEN OFF</string>
+    <string name="dim_blackout_controls_title">Dim &amp; Blackout Controls</string>
+    <string name="dim_display_only">Dim Display Only</string>
+    <string name="dim_display_only_desc">If enabled, you can still view the app underneath. If disabled, screen goes pure black.</string>
+    <string name="dim_opacity_level">Dim Opacity Level</string>
+    <string name="touch_block_title">Touch Block / Screen Lock</string>
+    <string name="touch_block_desc">Ignores accidental touches while active (pocket mode). Dismiss with double-tap gesture.</string>
+    <string name="sleep_timer_title">Auto-Pause Sleep Timer</string>
+    <string name="sleep_timer_desc">Fades screen out and pauses background audio after time elapsed.</string>
+    <string name="preset_off">Off</string>
+    <string name="preset_minutes">%1$dm</string>
+    <string name="intelligent_triggers_title">Intelligent Triggers</string>
+    <string name="pocket_mode_title">Auto Pocket/Face-down Mode</string>
+    <string name="pocket_mode_desc">Automatically blacks out display matrix when proximity sensor is covered (face down on table or inside pocket).</string>
+    <string name="shake_wake_title">Shake to Wake/Dismiss</string>
+    <string name="shake_wake_desc">Shake the phone vigorously to dismiss overlay.</string>
+    <string name="double_tap_wake_title">Double-Tap Screen to Wake</string>
+    <string name="support_feedback_title">Support &amp; Feedback</string>
+    <string name="support_feedback_desc">Love using AetherScreen? Help us improve by leaving a rating or feedback!</string>
+    <string name="rate_aetherscreen">Rate AetherScreen</string>
+    <string name="target_media_apps">Target Media Applications</string>
+
+    <!-- Onboarding Strings -->
+    <string name="onboarding_welcome_title">Welcome to AetherScreen</string>
+    <string name="onboarding_welcome_desc">Preserve audio and save battery on OLED screens. Fully blackout or dim your display while keeping YouTube, browsers, or music players running in the background.</string>
+    <string name="onboarding_gestures_title">Screen Wake Gestures</string>
+    <string name="onboarding_gestures_desc">When the screen is blacked out, dismiss the overlay and wake the screen using these active gestures:</string>
+    <string name="onboarding_double_tap_title">Double-Tap to Wake</string>
+    <string name="onboarding_double_tap_desc">Tap twice anywhere to wake screen</string>
+    <string name="onboarding_shake_title">Shake to Wake</string>
+    <string name="onboarding_shake_desc">Shake device vigorously to wake screen</string>
+    <string name="onboarding_pocket_title">Auto Pocket Mode</string>
+    <string name="onboarding_pocket_desc">Auto blackout using proximity sensor</string>
+    <string name="onboarding_permission_title">Overlay Permission</string>
+    <string name="onboarding_permission_desc">AetherScreen needs display overlay permissions to show the black layer over other active applications.</string>
+    <string name="onboarding_permission_granted">Permission Granted!</string>
+    <string name="onboarding_grant_permission">Grant Overlay Permission</string>
+    <string name="onboarding_xiaomi_title">Xiaomi / Redmi / MIUI Users:</string>
+    <string name="onboarding_xiaomi_desc">Go to App Info -&gt; Other Permissions -&gt; enable \'Display pop-up windows while running in the background\' if overlays do not show.</string>
+    <string name="btn_back">BACK</string>
+    <string name="btn_next">NEXT</string>
+    <string name="btn_get_started">GET STARTED</string>
+</resources>

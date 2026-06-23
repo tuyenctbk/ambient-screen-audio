@@ -36,6 +36,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aetherscreen.core.model.AppSettings
 import com.aetherscreen.core.preferences.PreferencesManager
+import com.aetherscreen.tv.R
+import androidx.compose.ui.res.stringResource
 import com.aetherscreen.tv.service.TvOverlayService
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -142,7 +144,7 @@ fun TvMainScreen() {
             onDismissRequest = { showPermissionGuide = false },
             confirmButton = {
                 TvFocusButton(
-                    text = "Open Settings",
+                    text = stringResource(R.string.btn_open_settings),
                     isSelected = true,
                     onClick = {
                         launchOverlaySettings(context)
@@ -153,7 +155,7 @@ fun TvMainScreen() {
             },
             dismissButton = {
                 TvFocusButton(
-                    text = "Cancel",
+                    text = stringResource(R.string.btn_cancel),
                     isSelected = false,
                     onClick = { showPermissionGuide = false },
                     modifier = Modifier.width(120.dp)
@@ -161,7 +163,7 @@ fun TvMainScreen() {
             },
             title = {
                 Text(
-                    text = "Overlay Permission Guide",
+                    text = stringResource(R.string.permission_guide_title),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
@@ -170,23 +172,20 @@ fun TvMainScreen() {
             text = {
                 Column {
                     Text(
-                        text = "To dim the screen or turn off pixels while preserving audio, AetherScreen TV needs permission to draw over other apps.",
+                        text = stringResource(R.string.permission_guide_desc),
                         fontSize = 13.sp,
                         color = Color.LightGray,
                         modifier = Modifier.padding(bottom = 12.dp)
                     )
                     Text(
-                        text = "Instructions for Android TV:",
+                        text = stringResource(R.string.instructions_header),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF00E5FF),
                         modifier = Modifier.padding(bottom = 6.dp)
                     )
                     Text(
-                        text = "1. Click 'Open Settings' below.\n" +
-                               "2. If you are taken to a list, look for 'AetherScreen TV' and select it.\n" +
-                               "3. Turn the switch to 'Allowed' (or 'On').\n\n" +
-                               "Alternative path: Go to TV Home Settings -> Apps -> Special app access -> Display over other apps -> AetherScreen TV.",
+                        text = stringResource(R.string.instructions_body),
                         fontSize = 12.sp,
                         color = Color.Gray,
                         lineHeight = 16.sp
@@ -210,7 +209,7 @@ fun TvMainScreen() {
         // Top Header
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = "AETHER SCREEN TV",
+                text = stringResource(R.string.app_name),
                 fontSize = 32.sp,
                 fontWeight = FontWeight.ExtraBold,
                 letterSpacing = 6.sp,
@@ -221,7 +220,7 @@ fun TvMainScreen() {
                 )
             )
             Text(
-                text = "Blackout display matrix & save OLED pixels while keeping audio active.",
+                text = stringResource(R.string.app_subtitle),
                 fontSize = 14.sp,
                 color = Color.Gray,
                 modifier = Modifier.padding(top = 8.dp)
@@ -271,14 +270,14 @@ fun TvMainScreen() {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = if (isServiceRunning) "STOP BLACKOUT" else "START BLACKOUT",
+                            text = if (isServiceRunning) stringResource(R.string.stop_blackout) else stringResource(R.string.start_blackout),
                             fontSize = 22.sp,
                             fontWeight = FontWeight.Bold,
                             color = if (isServiceRunning) Color(0xFFFF5252) else Color.White
                         )
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(
-                            text = if (isServiceRunning) "Press any remote key to return." else "Dims screen. TV remote key dismisses.",
+                            text = if (isServiceRunning) stringResource(R.string.active_desc) else stringResource(R.string.inactive_desc),
                             fontSize = 12.sp,
                             color = Color.LightGray,
                             textAlign = TextAlign.Center
@@ -286,7 +285,7 @@ fun TvMainScreen() {
                         if (!hasOverlayPermission) {
                             Spacer(modifier = Modifier.height(16.dp))
                             Text(
-                                text = "Permission required: Click to grant.",
+                                text = stringResource(R.string.permission_required),
                                 color = Color(0xFFFFD54F),
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 12.sp
@@ -304,7 +303,7 @@ fun TvMainScreen() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 // Sleep Timer Card
-                TvCardContainer(title = "Sleep Auto-Pause Timer") {
+                TvCardContainer(title = stringResource(R.string.sleep_timer)) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -313,7 +312,7 @@ fun TvMainScreen() {
                         timerPresets.forEach { minutes ->
                             val isSelected = settings.sleepTimerMinutes == minutes
                             TvFocusButton(
-                                text = if (minutes == 0) "Off" else "${minutes}m",
+                                text = if (minutes == 0) stringResource(R.string.preset_off) else stringResource(R.string.preset_minutes, minutes),
                                 isSelected = isSelected,
                                 onClick = { viewModel.updateSleepTimer(scope, minutes) },
                                 modifier = Modifier.weight(1f)
@@ -323,15 +322,15 @@ fun TvMainScreen() {
                 }
 
                 // Ambient Clock screensaver card
-                TvCardContainer(title = "Bedside Screensaver Mode") {
+                TvCardContainer(title = stringResource(R.string.bedside_screensaver)) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Show Dim Moving Clock", color = Color.White, fontSize = 14.sp)
+                        Text(stringResource(R.string.show_clock), color = Color.White, fontSize = 14.sp)
                         TvFocusButton(
-                            text = if (settings.bedsideClockEnabled) "Enabled" else "Disabled",
+                            text = if (settings.bedsideClockEnabled) stringResource(R.string.enabled) else stringResource(R.string.disabled),
                             isSelected = settings.bedsideClockEnabled,
                             onClick = { viewModel.updateBedsideClock(scope, !settings.bedsideClockEnabled) }
                         )
@@ -342,7 +341,7 @@ fun TvMainScreen() {
 
         // Bottom Footer
         Text(
-            text = "Tip: Start audio on your favorite app, then open AetherScreen TV to dim the screen.",
+            text = stringResource(R.string.tip),
             fontSize = 12.sp,
             color = Color.DarkGray
         )

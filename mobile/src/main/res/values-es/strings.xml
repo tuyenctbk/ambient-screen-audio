@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="app_subtitle">Pantalla ambiental y preservación de audio</string>
+    <string name="new_update_title">¡Nueva actualización disponible!</string>
+    <string name="new_update_desc">La versión %1$s ya está disponible. Actualice para obtener nuevas funciones de optimización.</string>
+    <string name="update">Actualizar</string>
+    <string name="permission_required_title">Permiso requerido</string>
+    <string name="permission_required_desc">AetherScreen necesita permiso para superponerse a otras aplicaciones para atenuar la pantalla y evitar el desgaste de la pantalla OLED.</string>
+    <string name="grant_permission">Otorgar permiso</string>
+    <string name="aether_screen_active">AETHER SCREEN ACTIVO</string>
+    <string name="aether_screen_off">AETHER SCREEN APAGADO</string>
+    <string name="dim_blackout_controls_title">Controles de atenuación y apagado</string>
+    <string name="dim_display_only">Atenuar pantalla solamente</string>
+    <string name="dim_display_only_desc">Si está habilitado, aún puede ver la aplicación debajo. Si está deshabilitado, la pantalla se vuelve completamente negra.</string>
+    <string name="dim_opacity_level">Nivel de opacidad de atenuación</string>
+    <string name="touch_block_title">Bloqueo táctil / Bloqueo de pantalla</string>
+    <string name="touch_block_desc">Ignora los toques accidentales mientras está activo (modo bolsillo). Descartar con el gesto de doble toque.</string>
+    <string name="sleep_timer_title">Temporizador de apagado automático</string>
+    <string name="sleep_timer_desc">Desvanece la pantalla y pausa el audio de fondo después de transcurrido el tiempo.</string>
+    <string name="preset_off">Apagado</string>
+    <string name="preset_minutes">%1$dm</string>
+    <string name="intelligent_triggers_title">Disparadores inteligentes</string>
+    <string name="pocket_mode_title">Modo bolsillo / Boca abajo automático</string>
+    <string name="pocket_mode_desc">Apaga automáticamente la matriz de pantalla cuando se cubre el sensor de proximidad (boca abajo sobre la mesa o dentro del bolsillo).</string>
+    <string name="shake_wake_title">Agitar para despertar/descartar</string>
+    <string name="shake_wake_desc">Agite el teléfono vigorosamente para descartar la superposición.</string>
+    <string name="double_tap_wake_title">Doble toque en pantalla para despertar</string>
+    <string name="support_feedback_title">Soporte y comentarios</string>
+    <string name="support_feedback_desc">¿Le encanta usar AetherScreen? ¡Ayúdenos a mejorar dejando una calificación o comentarios!</string>
+    <string name="rate_aetherscreen">Calificar AetherScreen</string>
+    <string name="target_media_apps">Aplicaciones de medios de destino</string>
+
+    <!-- Onboarding Strings -->
+    <string name="onboarding_welcome_title">Bienvenido a AetherScreen</string>
+    <string name="onboarding_welcome_desc">Preserve el audio y ahorre batería en pantallas OLED. Apague o atenúe por completo su pantalla mientras mantiene YouTube, navegadores o reproductores de música ejecutándose en segundo plano.</string>
+    <string name="onboarding_gestures_title">Gestos para despertar la pantalla</string>
+    <string name="onboarding_gestures_desc">Cuando la pantalla esté apagada, descarte la superposición y despierte la pantalla con estos gestos activos:</string>
+    <string name="onboarding_double_tap_title">Doble toque para despertar</string>
+    <string name="onboarding_double_tap_desc">Toque dos veces en cualquier lugar para despertar la pantalla</string>
+    <string name="onboarding_shake_title">Agitar para despertar</string>
+    <string name="onboarding_shake_desc">Agite el dispositivo vigorosamente para despertar la pantalla</string>
+    <string name="onboarding_pocket_title">Modo bolsillo automático</string>
+    <string name="onboarding_pocket_desc">Apagado automático usando el sensor de proximidad</string>
+    <string name="onboarding_permission_title">Permiso de superposición</string>
+    <string name="onboarding_permission_desc">AetherScreen necesita permisos de superposición de pantalla para mostrar la capa negra sobre otras aplicaciones activas.</string>
+    <string name="onboarding_permission_granted">¡Permiso otorgado!</string>
+    <string name="onboarding_grant_permission">Otorgar permiso de superposición</string>
+    <string name="onboarding_xiaomi_title">Usuarios de Xiaomi / Redmi / MIUI:</string>
+    <string name="onboarding_xiaomi_desc">Vaya a Información de la aplicación -> Otros permisos -> active \'Mostrar ventanas emergentes mientras se ejecuta en segundo plano\' si no se muestran las superposiciones.</string>
+    <string name="btn_back">ATRÁS</string>
+    <string name="btn_next">SIGUIENTE</string>
+    <string name="btn_get_started">EMPEZAR</string>
+</resources>

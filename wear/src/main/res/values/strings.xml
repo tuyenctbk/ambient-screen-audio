@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="toggle_phone">Toggle Phone Overlay</string>
+    <string name="toggle_tv">Toggle TV Overlay</string>
+    <string name="add_minutes">+10 Minutes</string>
+    <string name="devices_off">Devices: OFF</string>
+    <string name="device_on">%1$s: ON</string>
+</resources>

@@ -31,6 +31,8 @@ import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
 import androidx.wear.compose.material.Vignette
 import androidx.wear.compose.material.VignettePosition
+import com.aetherscreen.wear.R
+import androidx.compose.ui.res.stringResource
 import com.aetherscreen.wear.service.WearSyncService
 import com.google.android.gms.wearable.Wearable
 import kotlinx.coroutines.CoroutineScope
@@ -77,7 +79,7 @@ fun WearApp() {
             ) {
                 item {
                     Text(
-                        text = "AETHER SCREEN",
+                        text = stringResource(R.string.app_name),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF8B5CF6),
@@ -86,7 +88,7 @@ fun WearApp() {
                 }
 
                 item {
-                    val statusText = if (deviceActive) "$activeDeviceName: ON" else "Devices: OFF"
+                    val statusText = if (deviceActive) stringResource(R.string.device_on, activeDeviceName) else stringResource(R.string.devices_off)
                     val statusColor = if (deviceActive) Color(0xFFD946EF) else Color.Gray
                     Text(
                         text = statusText,
@@ -102,7 +104,7 @@ fun WearApp() {
                         onClick = {
                             sendMessage(context, coroutineScope, "/toggle_phone", "")
                         },
-                        label = { Text("Toggle Phone Overlay", fontSize = 11.sp) },
+                        label = { Text(stringResource(R.string.toggle_phone), fontSize = 11.sp) },
                         colors = ChipDefaults.primaryChipColors(
                             backgroundColor = Color(0xFF1E1F29)
                         ),
@@ -115,7 +117,7 @@ fun WearApp() {
                         onClick = {
                             sendMessage(context, coroutineScope, "/toggle_tv", "")
                         },
-                        label = { Text("Toggle TV Overlay", fontSize = 11.sp) },
+                        label = { Text(stringResource(R.string.toggle_tv), fontSize = 11.sp) },
                         colors = ChipDefaults.primaryChipColors(
                             backgroundColor = Color(0xFF1E1F29)
                         ),
@@ -128,7 +130,7 @@ fun WearApp() {
                         onClick = {
                             sendMessage(context, coroutineScope, "/add_time", "10")
                         },
-                        label = { Text("+10 Minutes", fontSize = 11.sp) },
+                        label = { Text(stringResource(R.string.add_minutes), fontSize = 11.sp) },
                         colors = ChipDefaults.secondaryChipColors(
                             backgroundColor = Color(0xFF8B5CF6)
                         ),

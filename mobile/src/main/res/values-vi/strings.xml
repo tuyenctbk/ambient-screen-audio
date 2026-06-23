@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="app_subtitle">Bảo vệ màn hình &amp; Tắt màn hình phát nhạc nền</string>
+    <string name="new_update_title">Đã có bản cập nhật mới!</string>
+    <string name="new_update_desc">Phiên bản %1$s đã sẵn sàng. Hãy cập nhật để trải nghiệm các tính năng tối ưu mới.</string>
+    <string name="update">Cập nhật</string>
+    <string name="permission_required_title">Yêu cầu quyền truy cập</string>
+    <string name="permission_required_desc">AetherScreen cần quyền hiển thị trên các ứng dụng khác để làm mờ màn hình và ngăn chặn hiện tượng bóng mờ (burn-in) trên màn hình OLED.</string>
+    <string name="grant_permission">Cấp quyền</string>
+    <string name="aether_screen_active">AETHER SCREEN ĐANG BẬT</string>
+    <string name="aether_screen_off">AETHER SCREEN ĐANG TẮT</string>
+    <string name="dim_blackout_controls_title">Cài đặt Làm mờ &amp; Tắt màn hình</string>
+    <string name="dim_display_only">Chỉ làm mờ màn hình</string>
+    <string name="dim_display_only_desc">Nếu bật, bạn vẫn có thể nhìn thấy nội dung ứng dụng bên dưới. Nếu tắt, màn hình sẽ tối đen hoàn toàn.</string>
+    <string name="dim_opacity_level">Mức độ làm mờ</string>
+    <string name="touch_block_title">Chặn cảm ứng / Khóa màn hình</string>
+    <string name="touch_block_desc">Bỏ qua các chạm vô ý khi màn hình đang tắt (chế độ bỏ túi). Thoát bằng cử chỉ chạm đúp.</string>
+    <string name="sleep_timer_title">Hẹn giờ tắt nhạc tự động</string>
+    <string name="sleep_timer_desc">Làm mờ dần màn hình và tạm dừng nhạc nền sau khi hết thời gian.</string>
+    <string name="preset_off">Tắt</string>
+    <string name="preset_minutes">%1$d phút</string>
+    <string name="intelligent_triggers_title">Kích hoạt thông minh</string>
+    <string name="pocket_mode_title">Tự động tắt khi bỏ túi/Úp máy</string>
+    <string name="pocket_mode_desc">Tự động tắt màn hình khi cảm biến tiệm cận bị che (úp điện thoại trên bàn hoặc bỏ trong túi quần).</string>
+    <string name="shake_wake_title">Lắc để bật màn hình</string>
+    <string name="shake_wake_desc">Lắc mạnh điện thoại để tắt lớp phủ đen và bật lại màn hình.</string>
+    <string name="double_tap_wake_title">Chạm đúp để bật màn hình</string>
+    <string name="support_feedback_title">Hỗ trợ &amp; Góp ý</string>
+    <string name="support_feedback_desc">Bạn thích sử dụng AetherScreen? Hãy giúp chúng tôi cải tiến bằng cách đánh giá hoặc gửi ý kiến!</string>
+    <string name="rate_aetherscreen">Đánh giá AetherScreen</string>
+    <string name="target_media_apps">Danh sách ứng dụng phát nhạc nền</string>
+
+    <!-- Onboarding Strings -->
+    <string name="onboarding_welcome_title">Chào mừng đến với AetherScreen</string>
+    <string name="onboarding_welcome_desc">Tiết kiệm pin và ngăn bóng mờ cho màn hình OLED. Tắt đen hoặc làm mờ hoàn toàn màn hình trong khi vẫn giữ YouTube, trình duyệt hoặc trình phát nhạc tiếp tục chạy dưới nền.</string>
+    <string name="onboarding_gestures_title">Cử chỉ bật màn hình</string>
+    <string name="onboarding_gestures_desc">Khi màn hình đang tắt đen, bạn có thể thoát lớp phủ và bật lại màn hình bằng các cử chỉ sau:</string>
+    <string name="onboarding_double_tap_title">Chạm đúp để bật</string>
+    <string name="onboarding_double_tap_desc">Chạm đúp vào bất kỳ đâu trên màn hình để bật lại</string>
+    <string name="onboarding_shake_title">Lắc máy để bật</string>
+    <string name="onboarding_shake_desc">Lắc mạnh điện thoại để đánh thức màn hình</string>
+    <string name="onboarding_pocket_title">Chế độ bỏ túi tự động</string>
+    <string name="onboarding_pocket_desc">Tự động tắt màn hình thông qua cảm biến tiệm cận</string>
+    <string name="onboarding_permission_title">Quyền vẽ trên ứng dụng khác</string>
+    <string name="onboarding_permission_desc">AetherScreen cần quyền hiển thị trên các ứng dụng khác để hiển thị lớp phủ đen tối ưu.</string>
+    <string name="onboarding_permission_granted">Đã cấp quyền thành công!</string>
+    <string name="onboarding_grant_permission">Cấp quyền hiển thị</string>
+    <string name="onboarding_xiaomi_title">Lưu ý cho thiết bị Xiaomi / Redmi / MIUI:</string>
+    <string name="onboarding_xiaomi_desc">Vào Thông tin ứng dụng -> Quyền khác -> bật \'Hiển thị cửa sổ popup khi chạy dưới nền\' nếu lớp phủ đen không hoạt động.</string>
+    <string name="btn_back">QUAY LẠI</string>
+    <string name="btn_next">TIẾP THEO</string>
+    <string name="btn_get_started">BẮT ĐẦU</string>
+</resources>

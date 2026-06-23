@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="app_subtitle">环境屏幕与音频保留</string>
+    <string name="new_update_title">有新版本可用！</string>
+    <string name="new_update_desc">版本 %1$s 现已可用。请更新以获取新的优化功能。</string>
+    <string name="update">更新</string>
+    <string name="permission_required_title">需要权限</string>
+    <string name="permission_required_desc">AetherScreen 需要在其他应用上层绘制的权限，以使屏幕变暗并防止 OLED 烧屏。</string>
+    <string name="grant_permission">授予权限</string>
+    <string name="aether_screen_active">AETHER SCREEN 已启用</string>
+    <string name="aether_screen_off">AETHER SCREEN 已关闭</string>
+    <string name="dim_blackout_controls_title">暗化和黑屏控制</string>
+    <string name="dim_display_only">仅降低屏幕亮度</string>
+    <string name="dim_display_only_desc">如果启用，您仍然可以查看下方的应用。如果禁用，屏幕将完全变黑。</string>
+    <string name="dim_opacity_level">暗化不透明度</string>
+    <string name="touch_block_title">触摸拦截 / 屏幕锁</string>
+    <string name="touch_block_desc">启用后忽略意外触摸（防误触模式）。通过双击手势解锁。</string>
+    <string name="sleep_timer_title">自动暂停睡眠定时器</string>
+    <string name="sleep_timer_desc">倒计时结束后渐隐屏幕并暂停后台音频。</string>
+    <string name="preset_off">关闭</string>
+    <string name="preset_minutes">%1$d 分钟</string>
+    <string name="intelligent_triggers_title">智能触发器</string>
+    <string name="pocket_mode_title">自动口袋/面朝下模式</string>
+    <string name="pocket_mode_desc">当遮挡距离传感器时（如面朝下放在桌上或装入口袋），自动使屏幕变黑。</string>
+    <string name="shake_wake_title">摇一摇唤醒/关闭</string>
+    <string name="shake_wake_desc">用力摇晃手机以关闭黑屏遮罩。</string>
+    <string name="double_tap_wake_title">双击屏幕唤醒</string>
+    <string name="support_feedback_title">支持与反馈</string>
+    <string name="support_feedback_desc">喜欢使用 AetherScreen 吗？请留下评分或反馈帮助我们改进！</string>
+    <string name="rate_aetherscreen">为 AetherScreen 评分</string>
+    <string name="target_media_apps">目标媒体应用程序</string>
+
+    <!-- Onboarding Strings -->
+    <string name="onboarding_welcome_title">欢迎使用 AetherScreen</string>
+    <string name="onboarding_welcome_desc">在 OLED 屏幕上保留音频并节省电量。在保持 YouTube、浏览器或音乐播放器在后台运行的同时，完全黑屏或调暗您的显示器。</string>
+    <string name="onboarding_gestures_title">屏幕唤醒手势</string>
+    <string name="onboarding_gestures_desc">当屏幕变黑时，您可以使用以下手势关闭遮罩并唤醒屏幕：</string>
+    <string name="onboarding_double_tap_title">双击唤醒</string>
+    <string name="onboarding_double_tap_desc">双击屏幕任意位置即可唤醒</string>
+    <string name="onboarding_shake_title">摇一摇唤醒</string>
+    <string name="onboarding_shake_desc">用力摇晃设备即可唤醒屏幕</string>
+    <string name="onboarding_pocket_title">自动口袋模式</string>
+    <string name="onboarding_pocket_desc">使用距离传感器自动使屏幕变黑</string>
+    <string name="onboarding_permission_title">悬浮窗权限</string>
+    <string name="onboarding_permission_desc">AetherScreen 需要显示悬浮窗（在其他应用上层绘制）权限，以在其他处于活动状态的应用程序上显示黑屏层。</string>
+    <string name="onboarding_permission_granted">已授予权限！</string>
+    <string name="onboarding_grant_permission">授予悬浮窗权限</string>
+    <string name="onboarding_xiaomi_title">小米/红米/MIUI 用户提示：</string>
+    <string name="onboarding_xiaomi_desc">如果黑屏未生效，请前往 应用信息 -> 其他权限 -> 启用 \'后台弹出界面\'。</string>
+    <string name="btn_back">返回</string>
+    <string name="btn_next">下一步</string>
+    <string name="btn_get_started">开始使用</string>
+</resources>

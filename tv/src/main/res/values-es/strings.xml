@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AetherScreen TV</string>
+    <string name="app_subtitle">Apague la matriz de la pantalla y ahorre píxeles OLED mientras mantiene el audio activo.</string>
+    <string name="stop_blackout">DETENER APAGADO</string>
+    <string name="start_blackout">INICIAR APAGADO</string>
+    <string name="active_desc">Presione cualquier tecla del control remoto para regresar.</string>
+    <string name="inactive_desc">Atenúa la pantalla. Tecla del control remoto de TV descarta.</string>
+    <string name="permission_required">Permiso requerido: Haga clic para otorgar.</string>
+    <string name="sleep_timer">Temporizador de apagado automático</string>
+    <string name="bedside_screensaver">Modo salvapantallas de cabecera</string>
+    <string name="show_clock">Mostrar reloj en movimiento atenuado</string>
+    <string name="enabled">Habilitado</string>
+    <string name="disabled">Deshabilitado</string>
+    <string name="tip">Consejo: Inicie el audio en su aplicación favorita, luego abra AetherScreen TV para atenuar la pantalla.</string>
+    <string name="preset_off">Apagado</string>
+    <string name="preset_minutes">%1$dm</string>
+    <string name="permission_guide_title">Guía de permiso de superposición</string>
+    <string name="permission_guide_desc">Para atenuar la pantalla o apagar los píxeles mientras se conserva el audio, AetherScreen TV necesita permiso para mostrarse sobre otras aplicaciones.</string>
+    <string name="instructions_header">Instrucciones para Android TV:</string>
+    <string name="instructions_body">1. Haga clic en \'Abrir configuración\' a continuación.\n2. Si se le dirige a una lista, busque \'AetherScreen TV\' y selecciónelo.\n3. Active el interruptor a \'Permitido\' (o \'Encendido\').\n\nRuta alternativa: Vaya a Configuración de la TV -&gt; Aplicaciones -&gt; Acceso especial a aplicaciones -&gt; Mostrar sobre otras aplicaciones -&gt; AetherScreen TV.</string>
+    <string name="btn_open_settings">Abrir configuración</string>
+    <string name="btn_cancel">Cancelar</string>
+</resources>
