@@ -34,6 +34,11 @@
             android:name="com.google.android.gms.car.application"
             android:resource="@xml/automotive_app_desc" />
 
+        <!-- AdMob App ID (Google Test ID) -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+
         <!-- Resolve AdServices config conflict between AdMob and Firebase -->
         <property
             android:name="android.adservices.AD_SERVICES_CONFIG"
