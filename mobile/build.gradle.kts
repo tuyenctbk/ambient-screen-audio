@@ -24,7 +24,7 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("/Users/user/AndroidStudioProjects/Games/Snake/dpad_arcade_release.jks")
+            storeFile = file("dpad_arcade_release.jks")
             storePassword = "dpadhero123"
             keyAlias = "dpad_hero_alias"
             keyPassword = "dpadhero123"
