@@ -1,0 +1,259 @@
+# Google Play Store Listing
+
+This document contains the localized store listings for AetherScreen.
+
+---
+
+<en-US>
+**Title:** AetherScreen: Ambient Blackout
+**Short Description:** Pure black screen overlay for OLED power saving and background audio focus.
+**Full Description:**
+AetherScreen is a premium system utility designed to transform your device into a focused ambient tool. Perfect for users who want to listen to video-based content (like YouTube or Twitch) while saving battery on OLED/AMOLED screens.
+
+Key Features:
+- **True Blackout:** Overlays a pure black layer (#000000) to turn off OLED pixels and maximize power saving.
+- **Background Persistence:** Keeps audio playing by preventing system-level display sleep for target media apps.
+- **Intelligent Triggers:** Automated pocket detection and shake-to-wake sensors.
+- **Multi-Device Control:** Sync and control your phone or TV directly from your Wear OS watch.
+- **Ad-Free Experience:** No intrusive ads during active blackout sessions.
+
+Perfect for bedside use, commuting, or preserving battery during long audio sessions.
+</en-US>
+
+---
+
+<es-ES>
+**Title:** AetherScreen: Apagado Ambiente
+**Short Description:** Superposición de pantalla negra pura para ahorro de batería OLED y audio.
+**Full Description:**
+AetherScreen es una utilidad de sistema premium diseñada para transformar su dispositivo en una herramienta ambiental enfocada. Perfecto para usuarios que desean escuchar contenido basado en video mientras ahorran batería en pantallas OLED/AMOLED.
+
+Características Principales:
+- **Apagado Real:** Superpone una capa negra pura (#000000) para apagar los píxeles OLED y maximizar el ahorro de energía.
+- **Persistencia en Segundo Plano:** Mantiene el audio reproduciéndose al evitar el modo de suspensión de la pantalla para aplicaciones multimedia.
+- **Activadores Inteligentes:** Detección automática de bolsillo y sensores de agitar para despertar.
+- **Control Multi-Dispositivo:** Sincronice y controle su teléfono o TV directamente desde su reloj Wear OS.
+
+Ideal para uso junto a la cama, viajes diarios o para conservar la batería durante largas sesiones de audio.
+</es-ES>
+
+---
+
+<fr-FR>
+**Title:** AetherScreen: Noir Ambiant
+**Short Description:** Superposition d'écran noir pur pour l'économie d'énergie OLED et l'audio.
+**Full Description:**
+AetherScreen est un utilitaire système premium conçu pour transformer votre appareil en un outil d'ambiance ciblé. Parfait pour les utilisateurs qui souhaitent écouter du contenu vidéo tout en économisant la batterie sur les écrans OLED/AMOLED.
+
+Caractéristiques Principales:
+- **Noir Total:** Superpose une couche noire pure (#000000) pour éteindre les pixels OLED et maximiser l'économie d'énergie.
+- **Persistance en Arrière-plan:** Maintient la lecture audio en empêchant la mise en veille de l'affichage pour les applications multimédias cibles.
+- **Déclencheurs Intelligents:** Détection automatique de poche et capteurs de secouage pour le réveil.
+- **Contrôle Multi-appareils:** Synchronisez et contrôlez votre téléphone ou votre téléviseur directement depuis votre montre Wear OS.
+
+Parfait pour une utilisation au chevet, les trajets quotidiens ou pour préserver la batterie pendant les longues sessions audio.
+</fr-FR>
+
+---
+
+<vi-VN>
+**Title:** AetherScreen: Màn Hình Tối Ambient
+**Short Description:** Lớp phủ màn hình đen thuần túy để tiết kiệm pin OLED và nghe nhạc nền.
+**Full Description:**
+AetherScreen là một tiện ích hệ thống cao cấp được thiết kế để biến thiết bị của bạn thành một công cụ môi trường tập trung. Hoàn hảo cho người dùng muốn nghe nội dung video trong khi tiết kiệm pin trên màn hình OLED/AMOLED.
+
+Các tính năng chính:
+- **Đen Tuyệt Đối:** Phủ một lớp đen thuần túy (#000000) để tắt các điểm ảnh OLED và tiết kiệm điện năng tối đa.
+- **Duy trì Nền:** Giữ cho âm thanh tiếp tục phát bằng cách ngăn màn hình ngủ đối với các ứng dụng giải trí được chọn.
+- **Kích hoạt Thông minh:** Tự động phát hiện trong túi và cảm biến lắc để đánh thức.
+- **Điều khiển Đa thiết bị:** Đồng bộ và điều khiển điện thoại hoặc TV trực tiếp từ đồng hồ Wear OS của bạn.
+
+Hoàn hảo để sử dụng bên giường, khi đi làm hoặc bảo vệ pin trong các phiên nghe âm thanh dài.
+</vi-VN>
+
+---
+
+<zh-CN>
+**Title:** AetherScreen: 环境息屏
+**Short Description:** 纯黑屏幕叠加层，用于 OLED 省电和背景音频对焦。
+**Full Description:**
+AetherScreen 是一款优质的系统工具，旨在将您的设备转变为专注的环境工具。非常适合希望在 OLED/AMOLED 屏幕上节省电量，同时收听视频内容（如 YouTube）的用户。
+
+主要功能：
+- **纯黑息屏：** 叠加纯黑色层 (#000000) 以关闭 OLED 像素并实现最大的省电效果。
+- **后台持续运行：** 通过防止目标媒体应用的系统级显示休眠来保持音频播放。
+- **智能触发器：** 自动口袋检测和摇晃唤醒传感器。
+- **多设备控制：** 直接通过 Wear OS 手表同步和控制您的手机或电视。
+
+非常适合床边使用、通勤或在长时间音频会话期间节省电量。
+</zh-CN>
+
+---
+
+<de-DE>
+**Title:** AetherScreen: Ambient Blackout
+**Short Description:** Rein schwarzes Bildschirm-Overlay für OLED-Stromersparnis und Audio-Fokus.
+**Full Description:**
+AetherScreen ist ein Premium-Systemdienstprogramm, das Ihr Gerät in ein fokussiertes Ambient-Tool verwandelt. Ideal für Benutzer, die video-basierte Inhalte hören und gleichzeitig den Akku auf OLED/AMOLED-Bildschirmen schonen möchten.
+
+Hauptmerkmale:
+- **Echtes Blackout:** Legt eine rein schwarze Schicht (#000000) über den Bildschirm, um OLED-Pixel auszuschalten.
+- **Hintergrund-Persistenz:** Hält die Audiowiedergabe aufrecht, indem der Systemruhezustand für Medien-Apps verhindert wird.
+- **Intelligente Trigger:** Automatische Taschenerkennung und Schüttel-zum-Aufwachen-Sensoren.
+- **Multi-Geräte-Steuerung:** Synchronisieren und steuern Sie Ihr Telefon oder Ihren Fernseher direkt von Ihrer Wear OS Watch.
+
+Perfekt für den Einsatz am Nachttisch, beim Pendeln oder zum Schonen des Akkus bei langen Audio-Sessions.
+</de-DE>
+
+---
+
+<pt-BR>
+**Title:** AetherScreen: Apagão Ambiente
+**Short Description:** Sobreposição de tela preta pura para economia de energia OLED e foco de áudio.
+**Full Description:**
+AetherScreen é um utilitário de sistema premium projetado para transformar seu dispositivo em uma ferramenta de ambiente focada. Perfeito para usuários que desejam ouvir conteúdo de vídeo enquanto economizam bateria em telas OLED/AMOLED.
+
+Recursos Principais:
+- **Apagão Real:** Sobrepõe uma camada preta pura (#000000) para desligar os pixels OLED e maximizar a economia de energia.
+- **Persistência em Segundo Plano:** Mantém o áudio tocando ao evitar a suspensão da tela para aplicativos de mídia.
+- **Gatilhos Inteligentes:** Detecção automática de bolso e sensores de agitar para despertar.
+- **Controle Multi-Dispositivo:** Sincronize e controle seu telefone ou TV diretamente do seu relógio Wear OS.
+
+Ideal para uso na cabeceira, deslocamentos ou para preservar a bateria durante longas sessões de áudio.
+</pt-BR>
+
+---
+
+<ja-JP>
+**Title:** AetherScreen: アンビエント・ブラックアウト
+**Short Description:** OLEDの省電力とバックグラウンド再生のための純黒スクリーンオーバーレイ。
+**Full Description:**
+AetherScreenは、デバイスを集中型の環境ツールに変えるプレミアムなシステムユーティリティです。YouTubeなどの動画コンテンツを聴きながら、OLED/AMOLED画面のバッテリーを節約したいユーザーに最適です。
+
+主な機能：
+- **真のブラックアウト：** 純黒レイヤー（#000000）をオーバーレイしてOLEDピクセルをオフにし、省電力を最大化します。
+- **バックグラウンド維持：** メディアアプリのディスプレイのスリープを防ぎ、オーディオ再生を維持します。
+- **インテリジェントトリガー：** 自動ポケット検出とシェイクでウェイクアップするセンサーを搭載。
+- **マルチデバイス制御：** Wear OSウォッチからスマホやテレビを直接同期・操作できます。
+
+就寝時、通勤時、または長時間のリスニング中のバッテリー保護に最適です。
+</ja-JP>
+
+---
+
+<ko-KR>
+**Title:** AetherScreen: 앰비언트 블랙아웃
+**Short Description:** OLED 절전 및 백그라운드 오디오 재생을 위한 순수 블랙 화면 오버레이.
+**Full Description:**
+AetherScreen은 기기를 집중형 앰비언트 도구로 변환하도록 설계된 프리미엄 시스템 유틸리티입니다. OLED/AMOLED 화면에서 배터리를 절약하면서 동영상 콘텐츠를 청취하려는 사용자에게 적합합니다.
+
+주요 기능:
+- **진정한 블랙아웃:** 순수 블랙 레이어(#000000)를 오버레이하여 OLED 픽셀을 끄고 절전 효과를 극대화합니다.
+- **백그라운드 유지:** 미디어 앱의 디스플레이 절전 모드를 방지하여 오디오 재생을 유지합니다.
+- **지능형 트리거:** 자동 주머니 감지 및 흔들어서 깨우기 센서 내장.
+- **멀티 디바이스 제어:** Wear OS 시계에서 스마트폰이나 TV를 직접 동기화하고 제어할 수 있습니다.
+
+침실 사용, 출퇴근 또는 장시간 오디오 세션 중에 배터리를 보존하는 데 이상적입니다.
+</ko-KR>
+
+---
+
+<ru-RU>
+**Title:** AetherScreen: Амбиентное Затемнение
+**Short Description:** Чисто черный оверлей для экономии заряда OLED и фонового аудио.
+**Full Description:**
+AetherScreen — это системная утилита премиум-класса, предназначенная для превращения вашего устройства в сфокусированный амбиентный инструмент. Идеально подходит для пользователей, которые хотят слушать видеоконтент, экономя заряд батареи на экранах OLED/AMOLED.
+
+Основные функции:
+- **Настоящее затемнение:** Накладывает чисто черный слой (#000000), чтобы отключить пиксели OLED и максимально сэкономить энергию.
+- **Фоновая работа:** Поддерживает воспроизведение аудио, предотвращая спящий режим дисплея для выбранных медиаприложений.
+- **Умные триггеры:** Автоматическое определение в кармане и датчики встряхивания для пробуждения.
+- **Управление несколькими устройствами:** Синхронизируйте и управляйте телефоном или телевизором прямо с часов Wear OS.
+
+Идеально подходит для использования у кровати, в поездках или для сохранения заряда батареи во время длительных аудиосессий.
+</ru-RU>
+
+---
+
+<it-IT>
+**Title:** AetherScreen: Oscuramento Ambientale
+**Short Description:** Overlay nero puro per il risparmio energetico OLED e l'audio in background.
+**Full Description:**
+AetherScreen è un'utilità di sistema premium progettata per trasformare il tuo dispositivo in uno strumento ambientale focalizzato. Perfetto per gli utenti che desiderano ascoltare contenuti video risparmiando batteria sugli schermi OLED/AMOLED.
+
+Caratteristiche principali:
+- **Oscuramento Reale:** Sovrappone uno strato nero puro (#000000) per spegnere i pixel OLED e massimizzare il risparmio energetico.
+- **Persistenza in Background:** Mantiene l'audio in riproduzione impedendo la sospensione del display per le app multimediali target.
+- **Trigger Intelligenti:** Rilevamento automatico in tasca e sensori di scuotimento per il risveglio.
+- **Controllo Multi-Dispositivo:** Sincronizza e controlla il tuo telefono o TV direttamente dal tuo orologio Wear OS.
+
+Perfetto per l'uso al comodino, durante il pendolarismo o per preservare la batteria durante lunghe sessioni audio.
+</it-IT>
+
+---
+
+<hi-IN>
+**Title:** AetherScreen: एम्बिएंट ब्लैकआउट
+**Short Description:** OLED पावर सेविंग और बैकग्राउंड ऑडियो के लिए शुद्ध ब्लैक स्क्रीन ओवरले।
+**Full Description:**
+AetherScreen एक प्रीमियम सिस्टम उपयोगिता है जिसे आपके डिवाइस को एक केंद्रित एम्बिएंट टूल में बदलने के लिए डिज़ाइन किया गया है। उन उपयोगकर्ताओं के लिए बिल्कुल सही जो OLED/AMOLED स्क्रीन पर बैटरी बचाते हुए वीडियो सामग्री सुनना चाहते हैं।
+
+मुख्य विशेषताएं:
+- **शुद्ध ब्लैकआउट:** OLED पिक्सेल को बंद करने और बिजली की बचत को अधिकतम करने के लिए शुद्ध ब्लैक लेयर (#000000) ओवरले करता है।
+- **बैकग्राउंड निरंतरता:** मीडिया ऐप्स के लिए डिस्प्ले स्लीप को रोककर ऑडियो चलाता रहता है।
+- **इंटेलिजेंट ट्रिगर्स:** ऑटोमेटेड पॉकेट डिटेक्शन और शेक-टू-वेक सेंसर।
+- **मल्टी-डिवाइस कंट्रोल:** सीधे अपने Wear OS वॉच से अपने फोन या टीवी को सिंक और कंट्रोल करें।
+
+बेडसाइड उपयोग, आवागमन, या लंबे ऑडियो सत्रों के दौरान बैटरी सुरक्षित रखने के लिए बिल्कुल सही।
+</hi-IN>
+
+---
+
+<ar-SA>
+**Title:** AetherScreen: التعتيم المحيطي
+**Short Description:** طبقة سوداء نقية لتوفير طاقة OLED والتركيز على الصوت في الخلفية.
+**Full Description:**
+AetherScreen هي أداة نظام متميزة مصممة لتحويل جهازك إلى أداة محيطية مركزة. مثالية للمستخدمين الذين يرغبون في الاستماع إلى محتوى الفيديو مع توفير البطارية على شاشات OLED/AMOLED.
+
+الميزات الرئيسية:
+- **تعتيم حقيقي:** يغطي الشاشة بطبقة سوداء نقية (#000000) لإيقاف تشغيل بكسلات OLED وتوفير الطاقة إلى أقصى حد.
+- **استمرار الخلفية:** يحافظ على تشغيل الصوت عن طريق منع وضع سكون الشاشة لتطبيقات الوسائط المستهدفة.
+- **محفزات ذكية:** كشف تلقائي للجيب ومستشعرات الهز للاستيقاظ.
+- **التحكم في أجهزة متعددة:** قم بمزامنة والتحكم في هاتفك أو تلفزيونك مباشرة من ساعة Wear OS الخاصة بك.
+
+مثالي للاستخدام بجانب السرير، أو أثناء التنقل، أو للحفاظ على البطارية أثناء جلسات الصوت الطويلة.
+</ar-SA>
+
+---
+
+<tr-TR>
+**Title:** AetherScreen: Ortam Karartma
+**Short Description:** OLED güç tasarrufu ve arka plan sesi için saf siyah ekran katmanı.
+**Full Description:**
+AetherScreen, cihazınızı odaklanmış bir ortam aracına dönüştürmek için tasarlanmış birinci sınıf bir sistem aracıdır. OLED/AMOLED ekranlarda pil tasarrufu yaparken video içeriklerini dinlemek isteyen kullanıcılar için mükemmeldir.
+
+Ana Özellikler:
+- **Gerçek Karartma:** OLED piksellerini kapatmak ve güç tasarrufunu en üst düzeye çıkarmak için saf siyah bir katman (#000000) ekler.
+- **Arka Plan Sürekliliği:** Medya uygulamaları için ekran uykusunu engelleyerek sesin çalmaya devam etmesini sağlar.
+- **Akıllı Tetikleyiciler:** Otomatik cep algılama ve uyandırmak için salla sensörleri.
+- **Çoklu Cihaz Kontrolü:** Telefonunuzu veya TV'nizi doğrudan Wear OS saatinizden senkronize edin ve kontrol edin.
+
+Başucu kullanımı, işe gidip gelme veya uzun ses seansları sırasında pili korumak için idealdir.
+</tr-TR>
+
+---
+
+<id-ID>
+**Title:** AetherScreen: Penggelapan Ambient
+**Short Description:** Hamparan layar hitam murni untuk hemat daya OLED dan fokus audio latar belakang.
+**Full Description:**
+AetherScreen adalah utilitas sistem premium yang dirancang untuk mengubah perangkat Anda menjadi alat ambient yang terfokus. Sangat cocok bagi pengguna yang ingin mendengarkan konten video sambil menghemat baterai di layar OLED/AMOLED.
+
+Fitur Utama:
+- **Pemadaman Sejati:** Melapisi lapisan hitam murni (#000000) untuk mematikan piksel OLED dan memaksimalkan penghematan daya.
+- **Persistensi Latar Belakang:** Menjaga audio tetap diputar dengan mencegah tidur layar tingkat sistem untuk aplikasi media target.
+- **Pemicu Cerdas:** Deteksi saku otomatis dan sensor goyang untuk membangunkan.
+- **Kontrol Multi-Perangkat:** Sinkronkan dan kontrol ponsel atau TV Anda langsung dari jam tangan Wear OS.
+
+Sangat cocok untuk penggunaan di samping tempat tidur, perjalanan, atau menghemat baterai selama sesi audio yang lama.
+</id-ID>
