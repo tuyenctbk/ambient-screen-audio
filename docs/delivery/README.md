@@ -4,7 +4,17 @@ This document tracks the release history and deployment details for AetherScreen
 
 ## Release History
 
-### v1.0.1 (Build 207) - Current
+### v1.0.5 (Build 208) - Current
+- **Date**: 2024-05-22
+- **Summary**: Version bump for new submission.
+- **Changes**:
+    - Increment versionCode to 208.
+- **Artifacts**: 
+    - `mobile-release.aab`
+    - `tv-release.aab`
+    - `wear-release.aab`
+
+### v1.0.1 (Build 207)
 - **Date**: 2024-05-22
 - **Summary**: Compliance and Clean-up Release.
 - **Changes**:
