@@ -26,11 +26,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
 
-        <!-- Android Auto / Automotive OS Descriptor -->
-        <meta-data
-            android:name="com.google.android.gms.car.application"
-            android:resource="@xml/automotive_app_desc" />
-
         <!-- AdMob App ID (Google Test ID) -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

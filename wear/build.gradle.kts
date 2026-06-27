@@ -11,8 +11,8 @@ android {
         applicationId = "com.aetherscreen"
         minSdk = 30 // Wear OS 3.0+
         targetSdk = 35
-        versionCode = 204
-        versionName = "1.0.0"
+        versionCode = 207
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

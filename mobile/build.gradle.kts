@@ -13,8 +13,8 @@ android {
         applicationId = "com.aetherscreen"
         minSdk = 24
         targetSdk = 35
-        versionCode = 206
-        versionName = "1.0.0"
+        versionCode = 207
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
