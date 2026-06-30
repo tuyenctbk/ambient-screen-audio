@@ -31,6 +31,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -44,8 +45,13 @@ class OverlayService : Service() {
         const val NOTIFICATION_ID = 1001
 
         const val ACTION_START = "com.aetherscreen.action.START"
+        const val ACTION_ARM = "com.aetherscreen.action.ARM"
+        const val ACTION_ENGAGE_NOW = "com.aetherscreen.action.ENGAGE_NOW"
         const val ACTION_STOP = "com.aetherscreen.action.STOP"
         const val ACTION_ADD_10_MIN = "com.aetherscreen.action.ADD_10_MIN"
+
+        // How often to poll for active media playback while armed.
+        private const val PLAYBACK_POLL_INTERVAL_MS = 700L
 
         private val _isRunningFlow = MutableStateFlow(false)
         val isRunningFlow: StateFlow<Boolean> = _isRunningFlow.asStateFlow()
@@ -68,6 +74,8 @@ class OverlayService : Service() {
 
     private var currentSettings: AppSettings = AppSettings()
     private var timerJob: Job? = null
+    private var waitForPlaybackJob: Job? = null
+    private var isWaitingForPlayback = false
     private var remainingSeconds = 0
 
     override fun onCreate() {
@@ -94,18 +102,21 @@ class OverlayService : Service() {
         when (intent?.action) {
             ACTION_START -> {
                 serviceScope.launch {
-                    val settings = preferencesManager.settingsFlow.first()
-                    currentSettings = settings
-                    
+                    currentSettings = preferencesManager.settingsFlow.first()
                     startForeground(NOTIFICATION_ID, buildNotification())
-                    showOverlay()
-                    
-                    if (settings.sleepTimerMinutes > 0) {
-                        startTimer(settings.sleepTimerMinutes * 60)
-                    }
-                    
-                    setupSensors(settings)
+                    engageOverlay()
                 }
+            }
+            ACTION_ARM -> {
+                serviceScope.launch {
+                    currentSettings = preferencesManager.settingsFlow.first()
+                    isWaitingForPlayback = true
+                    startForeground(NOTIFICATION_ID, buildNotification())
+                    awaitPlaybackThenEngage()
+                }
+            }
+            ACTION_ENGAGE_NOW -> {
+                engageOverlay()
             }
             ACTION_STOP -> {
                 stopSelf()
@@ -115,6 +126,37 @@ class OverlayService : Service() {
             }
         }
         return START_NOT_STICKY
+    }
+
+    /**
+     * Arms the service: waits (without covering the screen) until media playback is
+     * detected, then engages the overlay. This lets the user launch a media app and
+     * have the dimmer kick in only once audio actually starts.
+     */
+    private fun awaitPlaybackThenEngage() {
+        waitForPlaybackJob?.cancel()
+        waitForPlaybackJob = serviceScope.launch {
+            while (isActive && !isOverlayShowing) {
+                if (MediaControlUtil.isMediaPlaying(this@OverlayService)) {
+                    engageOverlay()
+                    break
+                }
+                delay(PLAYBACK_POLL_INTERVAL_MS)
+            }
+        }
+    }
+
+    /** Shows the overlay and starts the timer/sensors. */
+    private fun engageOverlay() {
+        waitForPlaybackJob?.cancel()
+        isWaitingForPlayback = false
+        if (isOverlayShowing) return
+        showOverlay()
+        if (currentSettings.sleepTimerMinutes > 0) {
+            startTimer(currentSettings.sleepTimerMinutes * 60)
+        }
+        setupSensors(currentSettings)
+        updateNotification()
     }
 
     private fun showOverlay() {
@@ -311,22 +353,35 @@ class OverlayService : Service() {
             this, 2, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val timerText = if (remainingSeconds > 0) {
-            val mins = remainingSeconds / 60
-            val secs = remainingSeconds % 60
-            String.format("Sleep Timer: %02d:%02d remaining", mins, secs)
-        } else {
-            "Overlay active and dimming display."
+        val waiting = isWaitingForPlayback && !isOverlayShowing
+
+        val title = if (waiting) "AetherScreen Armed" else "AetherScreen Active"
+        val contentText = when {
+            waiting -> "Waiting for media playback to start\u2026"
+            remainingSeconds > 0 -> {
+                val mins = remainingSeconds / 60
+                val secs = remainingSeconds % 60
+                String.format("Sleep Timer: %02d:%02d remaining", mins, secs)
+            }
+            else -> "Overlay active and dimming display."
         }
 
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("AetherScreen Active")
-            .setContentText(timerText)
+            .setContentTitle(title)
+            .setContentText(contentText)
             .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setContentIntent(mainPendingIntent)
             .setOngoing(true)
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .addAction(android.R.drawable.ic_menu_close_clear_cancel, "Stop", stopPendingIntent)
+
+        if (waiting) {
+            val engageIntent = Intent(this, OverlayService::class.java).apply { action = ACTION_ENGAGE_NOW }
+            val engagePendingIntent = PendingIntent.getService(
+                this, 3, engageIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            builder.addAction(android.R.drawable.ic_menu_view, "Black out now", engagePendingIntent)
+        }
 
         if (remainingSeconds > 0) {
             builder.addAction(android.R.drawable.ic_input_add, "+10 Mins", addTimePendingIntent)
@@ -360,6 +415,7 @@ class OverlayService : Service() {
         removeOverlay()
         sensorController?.stopListening()
         timerJob?.cancel()
+        waitForPlaybackJob?.cancel()
         serviceScope.cancel()
     }
 

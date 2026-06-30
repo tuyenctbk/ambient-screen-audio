@@ -20,4 +20,13 @@
     <string name="instructions_body">1. Click nút \'Cài đặt\' bên dưới.\n2. Ở danh sách ứng dụng hiện ra, chọn ứng dụng \'AetherScreen TV\'.\n3. Bật công tắc cho phép vẽ trên ứng dụng khác sang trạng thái bật.\n\nĐường dẫn thay thế: Vào Cài đặt TV -&gt; Ứng dụng -&gt; Quyền truy cập đặc biệt -&gt; Hiển thị trên ứng dụng khác -&gt; Chọn AetherScreen TV.</string>
     <string name="btn_open_settings">Cài đặt</string>
     <string name="btn_cancel">Hủy</string>
+
+    <!-- Dim over an app (auto-engage on playback) -->
+    <string name="dim_over_app_title">Làm mờ trên ứng dụng</string>
+    <string name="dim_over_app_button">Chọn ứng dụng</string>
+    <string name="dim_over_app_desc">Mở ứng dụng video — màn hình sẽ tự làm mờ khi bắt đầu phát.</string>
+    <string name="app_picker_title">Chọn ứng dụng để làm mờ</string>
+    <string name="app_picker_desc">Chúng tôi sẽ mở ứng dụng và tự động làm mờ màn hình khi âm thanh bắt đầu phát.</string>
+    <string name="app_picker_empty">Không tìm thấy ứng dụng.</string>
+    <string name="app_launch_failed">Không thể mở ứng dụng đó.</string>
 </resources>

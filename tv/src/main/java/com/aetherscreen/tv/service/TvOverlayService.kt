@@ -46,7 +46,12 @@ class TvOverlayService : Service() {
         const val NOTIFICATION_ID = 2001
 
         const val ACTION_START = "com.aetherscreen.tv.action.START"
+        const val ACTION_ARM = "com.aetherscreen.tv.action.ARM"
+        const val ACTION_ENGAGE_NOW = "com.aetherscreen.tv.action.ENGAGE_NOW"
         const val ACTION_STOP = "com.aetherscreen.tv.action.STOP"
+
+        // How often to poll for active media playback while armed.
+        private const val PLAYBACK_POLL_INTERVAL_MS = 700L
 
         private val _isRunningFlow = MutableStateFlow(false)
         val isRunningFlow: StateFlow<Boolean> = _isRunningFlow.asStateFlow()
@@ -71,6 +76,8 @@ class TvOverlayService : Service() {
     private var currentSettings = AppSettings()
     private var timerJob: Job? = null
     private var clockJob: Job? = null
+    private var waitForPlaybackJob: Job? = null
+    private var isWaitingForPlayback = false
     private var remainingSeconds = 0
 
     override fun onCreate() {
@@ -87,11 +94,19 @@ class TvOverlayService : Service() {
                 serviceScope.launch {
                     currentSettings = preferencesManager.settingsFlow.first()
                     startForeground(NOTIFICATION_ID, buildNotification())
-                    showOverlay()
-                    if (currentSettings.sleepTimerMinutes > 0) {
-                        startTimer(currentSettings.sleepTimerMinutes * 60)
-                    }
+                    engageOverlay()
                 }
+            }
+            ACTION_ARM -> {
+                serviceScope.launch {
+                    currentSettings = preferencesManager.settingsFlow.first()
+                    isWaitingForPlayback = true
+                    startForeground(NOTIFICATION_ID, buildNotification())
+                    awaitPlaybackThenEngage()
+                }
+            }
+            ACTION_ENGAGE_NOW -> {
+                engageOverlay()
             }
             ACTION_STOP -> {
                 stopSelf()
@@ -100,13 +115,47 @@ class TvOverlayService : Service() {
         return START_NOT_STICKY
     }
 
+    /**
+     * Arms the service: waits (without covering the screen) until media playback is
+     * detected, then engages the overlay. Lets the user launch a media app on TV and
+     * have the dimmer kick in only once audio actually starts.
+     */
+    private fun awaitPlaybackThenEngage() {
+        waitForPlaybackJob?.cancel()
+        waitForPlaybackJob = serviceScope.launch {
+            while (isActive && !isOverlayShowing) {
+                if (MediaControlUtil.isMediaPlaying(this@TvOverlayService)) {
+                    engageOverlay()
+                    break
+                }
+                delay(PLAYBACK_POLL_INTERVAL_MS)
+            }
+        }
+    }
+
+    /** Shows the overlay and starts the sleep timer. */
+    private fun engageOverlay() {
+        waitForPlaybackJob?.cancel()
+        isWaitingForPlayback = false
+        if (isOverlayShowing) return
+        showOverlay()
+        if (currentSettings.sleepTimerMinutes > 0) {
+            startTimer(currentSettings.sleepTimerMinutes * 60)
+        }
+    }
+
     private fun showOverlay() {
         if (isOverlayShowing) return
 
-        // Container to intercept physical remote keys to dismiss overlay
+        // Container to intercept physical remote keys to dismiss overlay. Volume and
+        // media transport keys are let through so the user can keep controlling the
+        // media playing underneath without waking the screen.
         val container = object : FrameLayout(this) {
             override fun dispatchKeyEvent(event: KeyEvent): Boolean {
                 if (event.action == KeyEvent.ACTION_DOWN) {
+                    if (isPassThroughKey(event.keyCode)) {
+                        return super.dispatchKeyEvent(event)
+                    }
                     stopSelf()
                     return true
                 }
@@ -201,6 +250,21 @@ class TvOverlayService : Service() {
         return SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
     }
 
+    private fun isPassThroughKey(keyCode: Int): Boolean = when (keyCode) {
+        KeyEvent.KEYCODE_VOLUME_UP,
+        KeyEvent.KEYCODE_VOLUME_DOWN,
+        KeyEvent.KEYCODE_VOLUME_MUTE,
+        KeyEvent.KEYCODE_MEDIA_PLAY,
+        KeyEvent.KEYCODE_MEDIA_PAUSE,
+        KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE,
+        KeyEvent.KEYCODE_MEDIA_STOP,
+        KeyEvent.KEYCODE_MEDIA_NEXT,
+        KeyEvent.KEYCODE_MEDIA_PREVIOUS,
+        KeyEvent.KEYCODE_MEDIA_FAST_FORWARD,
+        KeyEvent.KEYCODE_MEDIA_REWIND -> true
+        else -> false
+    }
+
     private fun startTimer(seconds: Int) {
         timerJob?.cancel()
         remainingSeconds = seconds
@@ -225,15 +289,32 @@ class TvOverlayService : Service() {
             this, 1, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("AetherScreen TV Dimmer Active")
-            .setContentText("OLED Burn-in protection active. Press any remote button to wake screen.")
+        val waiting = isWaitingForPlayback && !isOverlayShowing
+        val title = if (waiting) "AetherScreen TV Armed" else "AetherScreen TV Dimmer Active"
+        val contentText = if (waiting) {
+            "Waiting for media playback to start\u2026"
+        } else {
+            "OLED Burn-in protection active. Press any remote button to wake screen."
+        }
+
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentTitle(title)
+            .setContentText(contentText)
             .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setContentIntent(mainPendingIntent)
             .setOngoing(true)
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .addAction(android.R.drawable.ic_menu_close_clear_cancel, "Wake Screen", stopPendingIntent)
-            .build()
+
+        if (waiting) {
+            val engageIntent = Intent(this, TvOverlayService::class.java).apply { action = ACTION_ENGAGE_NOW }
+            val engagePendingIntent = PendingIntent.getService(
+                this, 2, engageIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            builder.addAction(android.R.drawable.ic_menu_view, "Black out now", engagePendingIntent)
+        }
+
+        return builder.build()
     }
 
     private fun createNotificationChannel() {
@@ -269,6 +350,7 @@ class TvOverlayService : Service() {
         removeOverlay()
         timerJob?.cancel()
         clockJob?.cancel()
+        waitForPlaybackJob?.cancel()
         serviceScope.cancel()
     }
 

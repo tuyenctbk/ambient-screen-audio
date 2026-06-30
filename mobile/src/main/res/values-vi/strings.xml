@@ -50,4 +50,13 @@
     <string name="btn_back">QUAY LẠI</string>
     <string name="btn_next">TIẾP THEO</string>
     <string name="btn_get_started">BẮT ĐẦU</string>
+    <string name="btn_cancel">Hủy</string>
+
+    <!-- Dim over an app (auto-engage on playback) -->
+    <string name="dim_over_app_button">Làm mờ trên ứng dụng media</string>
+    <string name="dim_over_app_desc">Mở ứng dụng video hoặc nhạc của bạn — màn hình sẽ tự làm mờ khi bắt đầu phát.</string>
+    <string name="app_picker_title">Chọn ứng dụng để làm mờ</string>
+    <string name="app_picker_desc">Chúng tôi sẽ mở ứng dụng và tự động làm mờ màn hình khi âm thanh bắt đầu phát.</string>
+    <string name="app_picker_empty">Không tìm thấy ứng dụng. Hãy chọn ứng dụng media mục tiêu bên dưới trước.</string>
+    <string name="app_launch_failed">Không thể mở ứng dụng đó.</string>
 </resources>

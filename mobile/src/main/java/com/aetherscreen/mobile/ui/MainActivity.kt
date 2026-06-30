@@ -192,6 +192,7 @@ fun MainScreen() {
     val isServiceRunning by OverlayService.isRunningFlow.collectAsState()
     var installedApps by remember { mutableStateOf<List<AppInfoItem>>(emptyList()) }
     var updateAvailableVersion by remember { mutableStateOf<String?>(null) }
+    var showAppPicker by remember { mutableStateOf(false) }
 
     val lifecycleOwner = LocalLifecycleOwner.current
 
@@ -224,6 +225,24 @@ fun MainScreen() {
             }.sortedBy { it.name }
             installedApps = launchable
         }
+    }
+
+    if (showAppPicker) {
+        val pickerApps = remember(installedApps, settings.targetApps) {
+            if (settings.targetApps.isNotEmpty()) {
+                installedApps.filter { settings.targetApps.contains(it.packageName) }
+            } else {
+                installedApps
+            }
+        }
+        AppPickerDialog(
+            apps = pickerApps,
+            onDismiss = { showAppPicker = false },
+            onSelect = { packageName ->
+                showAppPicker = false
+                launchAppAndArm(context, packageName)
+            }
+        )
     }
 
     LazyColumn(
@@ -419,6 +438,38 @@ fun MainScreen() {
                 fontSize = 14.sp,
                 color = if (isServiceRunning) Color(0xFFD946EF) else Color.Gray,
                 letterSpacing = 1.sp
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+
+            // Primary flow: open a media app, then auto-dim once playback starts.
+            Button(
+                onClick = {
+                    hasOverlayPermission = Settings.canDrawOverlays(context)
+                    if (!hasOverlayPermission) {
+                        android.widget.Toast.makeText(
+                            context,
+                            context.getString(R.string.permission_required_title),
+                            android.widget.Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        showAppPicker = true
+                    }
+                },
+                enabled = !isServiceRunning,
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF8B5CF6)),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Icon(imageVector = Icons.Default.PlayArrow, contentDescription = null)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(stringResource(R.string.dim_over_app_button), fontWeight = FontWeight.Bold)
+            }
+            Text(
+                text = stringResource(R.string.dim_over_app_desc),
+                fontSize = 11.sp,
+                color = Color.Gray,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(top = 8.dp, start = 8.dp, end = 8.dp)
             )
             Spacer(modifier = Modifier.height(28.dp))
         }
@@ -719,6 +770,99 @@ fun AdMobBanner(modifier: Modifier = Modifier) {
             }
         }
     )
+}
+
+@Composable
+fun AppPickerDialog(
+    apps: List<AppInfoItem>,
+    onDismiss: () -> Unit,
+    onSelect: (String) -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        confirmButton = {},
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(R.string.btn_cancel), color = Color.Gray, fontWeight = FontWeight.Bold)
+            }
+        },
+        title = {
+            Text(
+                text = stringResource(R.string.app_picker_title),
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                fontSize = 18.sp
+            )
+        },
+        text = {
+            Column {
+                Text(
+                    text = stringResource(R.string.app_picker_desc),
+                    fontSize = 12.sp,
+                    color = Color.LightGray,
+                    modifier = Modifier.padding(bottom = 12.dp)
+                )
+                if (apps.isEmpty()) {
+                    Text(
+                        text = stringResource(R.string.app_picker_empty),
+                        fontSize = 13.sp,
+                        color = Color.Gray
+                    )
+                } else {
+                    LazyColumn(modifier = Modifier.heightIn(max = 360.dp)) {
+                        items(apps) { app ->
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(10.dp))
+                                    .clickable { onSelect(app.packageName) }
+                                    .padding(vertical = 12.dp, horizontal = 8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.PlayArrow,
+                                    contentDescription = null,
+                                    tint = Color(0xFF8B5CF6),
+                                    modifier = Modifier.size(20.dp)
+                                )
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Column {
+                                    Text(app.name, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                                    Text(app.packageName, color = Color.Gray, fontSize = 11.sp)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        containerColor = Color(0xFF1E1F29),
+        shape = RoundedCornerShape(16.dp)
+    )
+}
+
+private fun launchAppAndArm(context: Context, packageName: String) {
+    val launchIntent = context.packageManager.getLaunchIntentForPackage(packageName)
+    if (launchIntent == null) {
+        android.widget.Toast.makeText(
+            context,
+            context.getString(R.string.app_launch_failed),
+            android.widget.Toast.LENGTH_SHORT
+        ).show()
+        return
+    }
+
+    // Arm the overlay first (allowed: the activity is still foreground), then open the
+    // media app. The overlay engages automatically once playback is detected.
+    val armIntent = Intent(context, OverlayService::class.java).apply { action = OverlayService.ACTION_ARM }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        context.startForegroundService(armIntent)
+    } else {
+        context.startService(armIntent)
+    }
+
+    launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    context.startActivity(launchIntent)
 }
 
 fun triggerInAppReview(context: Context) {

@@ -20,4 +20,13 @@
     <string name="instructions_body">1. Haga clic en \'Abrir configuración\' a continuación.\n2. Si se le dirige a una lista, busque \'AetherScreen TV\' y selecciónelo.\n3. Active el interruptor a \'Permitido\' (o \'Encendido\').\n\nRuta alternativa: Vaya a Configuración de la TV -&gt; Aplicaciones -&gt; Acceso especial a aplicaciones -&gt; Mostrar sobre otras aplicaciones -&gt; AetherScreen TV.</string>
     <string name="btn_open_settings">Abrir configuración</string>
     <string name="btn_cancel">Cancelar</string>
+
+    <!-- Dim over an app (auto-engage on playback) -->
+    <string name="dim_over_app_title">Atenuar sobre una app</string>
+    <string name="dim_over_app_button">Elegir app</string>
+    <string name="dim_over_app_desc">Abra una app de vídeo: la pantalla se atenúa automáticamente cuando comienza la reproducción.</string>
+    <string name="app_picker_title">Elija una app para atenuar</string>
+    <string name="app_picker_desc">Abriremos la app y atenuaremos la pantalla automáticamente cuando empiece a sonar el audio.</string>
+    <string name="app_picker_empty">No se encontraron apps.</string>
+    <string name="app_launch_failed">No se pudo abrir esa app.</string>
 </resources>

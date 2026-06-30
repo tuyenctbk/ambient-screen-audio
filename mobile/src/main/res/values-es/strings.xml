@@ -50,4 +50,13 @@
     <string name="btn_back">ATRÁS</string>
     <string name="btn_next">SIGUIENTE</string>
     <string name="btn_get_started">EMPEZAR</string>
+    <string name="btn_cancel">Cancelar</string>
+
+    <!-- Dim over an app (auto-engage on playback) -->
+    <string name="dim_over_app_button">Atenuar sobre una app multimedia</string>
+    <string name="dim_over_app_desc">Abra su app de vídeo o música: la pantalla se atenúa automáticamente cuando comienza la reproducción.</string>
+    <string name="app_picker_title">Elija una app para atenuar</string>
+    <string name="app_picker_desc">Abriremos la app y atenuaremos la pantalla automáticamente cuando empiece a sonar el audio.</string>
+    <string name="app_picker_empty">No se encontraron apps. Primero seleccione apps multimedia de destino abajo.</string>
+    <string name="app_launch_failed">No se pudo abrir esa app.</string>
 </resources>

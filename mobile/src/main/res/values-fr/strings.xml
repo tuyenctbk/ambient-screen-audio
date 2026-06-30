@@ -50,4 +50,13 @@
     <string name="btn_back">RETOUR</string>
     <string name="btn_next">SUIVANT</string>
     <string name="btn_get_started">COMMENCER</string>
+    <string name="btn_cancel">Annuler</string>
+
+    <!-- Dim over an app (auto-engage on playback) -->
+    <string name="dim_over_app_button">Assombrir sur une app multimédia</string>
+    <string name="dim_over_app_desc">Ouvrez votre app vidéo ou musique : l\'écran s\'assombrit automatiquement dès le début de la lecture.</string>
+    <string name="app_picker_title">Choisissez une app à assombrir</string>
+    <string name="app_picker_desc">Nous ouvrirons l\'app et assombrirons l\'écran automatiquement dès que l\'audio démarre.</string>
+    <string name="app_picker_empty">Aucune app trouvée. Sélectionnez d\'abord des apps multimédias cibles ci-dessous.</string>
+    <string name="app_launch_failed">Impossible d\'ouvrir cette app.</string>
 </resources>

@@ -50,4 +50,13 @@
     <string name="btn_back">返回</string>
     <string name="btn_next">下一步</string>
     <string name="btn_get_started">开始使用</string>
+    <string name="btn_cancel">取消</string>
+
+    <!-- Dim over an app (auto-engage on playback) -->
+    <string name="dim_over_app_button">在媒体应用上变暗</string>
+    <string name="dim_over_app_desc">打开您的视频或音乐应用——开始播放后屏幕会自动变暗。</string>
+    <string name="app_picker_title">选择要变暗的应用</string>
+    <string name="app_picker_desc">我们将打开该应用，并在音频开始播放后自动使屏幕变暗。</string>
+    <string name="app_picker_empty">未找到应用。请先在下方选择目标媒体应用。</string>
+    <string name="app_launch_failed">无法打开该应用。</string>
 </resources>

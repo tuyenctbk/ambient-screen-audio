@@ -20,4 +20,13 @@
     <string name="instructions_body">1. Cliquez sur \'Ouvrir les paramètres\' ci-dessous.\n2. Si vous êtes dirigé vers une liste, recherchez \'AetherScreen TV\' et sélectionnez-le.\n3. Activez l\'interrupteur sur \'Autorisé\' (ou \'Activé\').\n\nAutre chemin : Allez dans Paramètres TV -&gt; Applications -&gt; Accès spécial aux applications -&gt; Afficher sur d\'autres applications -&gt; AetherScreen TV.</string>
     <string name="btn_open_settings">Ouvrir les paramètres</string>
     <string name="btn_cancel">Annuler</string>
+
+    <!-- Dim over an app (auto-engage on playback) -->
+    <string name="dim_over_app_title">Assombrir sur une app</string>
+    <string name="dim_over_app_button">Choisir une app</string>
+    <string name="dim_over_app_desc">Ouvrez une app vidéo : l\'écran s\'assombrit automatiquement dès le début de la lecture.</string>
+    <string name="app_picker_title">Choisissez une app à assombrir</string>
+    <string name="app_picker_desc">Nous ouvrirons l\'app et assombrirons l\'écran automatiquement dès que l\'audio démarre.</string>
+    <string name="app_picker_empty">Aucune app trouvée.</string>
+    <string name="app_launch_failed">Impossible d\'ouvrir cette app.</string>
 </resources>

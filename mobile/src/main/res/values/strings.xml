@@ -50,4 +50,13 @@
     <string name="btn_back">BACK</string>
     <string name="btn_next">NEXT</string>
     <string name="btn_get_started">GET STARTED</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- Dim over an app (auto-engage on playback) -->
+    <string name="dim_over_app_button">Dim Over a Media App</string>
+    <string name="dim_over_app_desc">Open your video or music app — the screen dims automatically once playback starts.</string>
+    <string name="app_picker_title">Choose an app to dim over</string>
+    <string name="app_picker_desc">We\'ll open the app and dim the screen automatically once audio starts playing.</string>
+    <string name="app_picker_empty">No apps found. Select target media apps below first.</string>
+    <string name="app_launch_failed">Couldn\'t open that app.</string>
 </resources>

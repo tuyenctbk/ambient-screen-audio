@@ -20,4 +20,13 @@
     <string name="instructions_body">1. 点击下方的“前往设置”。\n2. 在应用列表中找到“AetherScreen TV”并选择它。\n3. 将开关设置为“允许”（或“开启”）。\n\n其他路径：前往 TV 系统设置 -&gt; 应用 -&gt; 特殊应用权限 -&gt; 在其他应用上层显示 -&gt; 开启 AetherScreen TV。</string>
     <string name="btn_open_settings">前往设置</string>
     <string name="btn_cancel">取消</string>
+
+    <!-- Dim over an app (auto-engage on playback) -->
+    <string name="dim_over_app_title">在应用上变暗</string>
+    <string name="dim_over_app_button">选择应用</string>
+    <string name="dim_over_app_desc">打开视频应用——开始播放后屏幕会自动变暗。</string>
+    <string name="app_picker_title">选择要变暗的应用</string>
+    <string name="app_picker_desc">我们将打开该应用，并在音频开始播放后自动使屏幕变暗。</string>
+    <string name="app_picker_empty">未找到应用。</string>
+    <string name="app_launch_failed">无法打开该应用。</string>
 </resources>

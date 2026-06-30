@@ -15,6 +15,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -39,8 +41,11 @@ import com.aetherscreen.core.preferences.PreferencesManager
 import com.aetherscreen.tv.R
 import androidx.compose.ui.res.stringResource
 import com.aetherscreen.tv.service.TvOverlayService
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+
+data class TvAppInfoItem(val name: String, val packageName: String)
 
 // --- VIEWMODEL ---
 class TvAetherViewModel(context: Context) : ViewModel() {
@@ -125,6 +130,25 @@ fun TvMainScreen() {
     var hasOverlayPermission by remember { mutableStateOf(Settings.canDrawOverlays(context)) }
     val isServiceRunning by TvOverlayService.isRunningFlow.collectAsState()
     var showPermissionGuide by remember { mutableStateOf(false) }
+    var installedApps by remember { mutableStateOf<List<TvAppInfoItem>>(emptyList()) }
+    var showAppPicker by remember { mutableStateOf(false) }
+
+    // Load TV-launchable apps so the user can pick what to dim over.
+    LaunchedEffect(Unit) {
+        scope.launch(Dispatchers.IO) {
+            val pm = context.packageManager
+            val leanbackIntent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LEANBACK_LAUNCHER)
+            val resolved = pm.queryIntentActivities(leanbackIntent, 0)
+            installedApps = resolved
+                .mapNotNull { info ->
+                    val pkg = info.activityInfo?.packageName ?: return@mapNotNull null
+                    if (pkg == context.packageName) return@mapNotNull null
+                    TvAppInfoItem(info.loadLabel(pm).toString(), pkg)
+                }
+                .distinctBy { it.packageName }
+                .sortedBy { it.name }
+        }
+    }
 
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
@@ -195,6 +219,17 @@ fun TvMainScreen() {
             titleContentColor = Color.White,
             textContentColor = Color.LightGray,
             shape = RoundedCornerShape(16.dp)
+        )
+    }
+
+    if (showAppPicker) {
+        TvAppPickerDialog(
+            apps = installedApps,
+            onDismiss = { showAppPicker = false },
+            onSelect = { packageName ->
+                showAppPicker = false
+                launchTvAppAndArm(context, packageName)
+            }
         )
     }
 
@@ -318,6 +353,35 @@ fun TvMainScreen() {
                     }
                 }
 
+                // Dim over an app card: launch a media app, auto-dim on playback
+                TvCardContainer(title = stringResource(R.string.dim_over_app_title)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = stringResource(R.string.dim_over_app_desc),
+                            color = Color.LightGray,
+                            fontSize = 12.sp,
+                            modifier = Modifier.weight(1f)
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        TvFocusButton(
+                            text = stringResource(R.string.dim_over_app_button),
+                            isSelected = true,
+                            onClick = {
+                                hasOverlayPermission = Settings.canDrawOverlays(context)
+                                if (!hasOverlayPermission) {
+                                    showPermissionGuide = true
+                                } else {
+                                    showAppPicker = true
+                                }
+                            }
+                        )
+                    }
+                }
+
                 // Ambient Clock screensaver card
                 TvCardContainer(title = stringResource(R.string.bedside_screensaver)) {
                     Row(
@@ -422,4 +486,93 @@ fun TvFocusButton(
             fontSize = 13.sp
         )
     }
+}
+
+@Composable
+fun TvAppPickerDialog(
+    apps: List<TvAppInfoItem>,
+    onDismiss: () -> Unit,
+    onSelect: (String) -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        confirmButton = {},
+        dismissButton = {
+            TvFocusButton(
+                text = stringResource(R.string.btn_cancel),
+                isSelected = false,
+                onClick = onDismiss,
+                modifier = Modifier.width(120.dp)
+            )
+        },
+        title = {
+            Text(
+                text = stringResource(R.string.app_picker_title),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        },
+        text = {
+            Column {
+                Text(
+                    text = stringResource(R.string.app_picker_desc),
+                    fontSize = 13.sp,
+                    color = Color.LightGray,
+                    modifier = Modifier.padding(bottom = 12.dp)
+                )
+                if (apps.isEmpty()) {
+                    Text(
+                        text = stringResource(R.string.app_picker_empty),
+                        fontSize = 13.sp,
+                        color = Color.Gray
+                    )
+                } else {
+                    LazyColumn(
+                        modifier = Modifier.heightIn(max = 320.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        items(apps) { app ->
+                            TvFocusButton(
+                                text = app.name,
+                                isSelected = false,
+                                onClick = { onSelect(app.packageName) },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                    }
+                }
+            }
+        },
+        containerColor = Color(0xFF14151F),
+        titleContentColor = Color.White,
+        textContentColor = Color.LightGray,
+        shape = RoundedCornerShape(16.dp)
+    )
+}
+
+private fun launchTvAppAndArm(context: Context, packageName: String) {
+    val pm = context.packageManager
+    val launchIntent = pm.getLeanbackLaunchIntentForPackage(packageName)
+        ?: pm.getLaunchIntentForPackage(packageName)
+    if (launchIntent == null) {
+        android.widget.Toast.makeText(
+            context,
+            context.getString(R.string.app_launch_failed),
+            android.widget.Toast.LENGTH_SHORT
+        ).show()
+        return
+    }
+
+    // Arm the overlay first (activity is still foreground), then open the media app.
+    // The overlay engages automatically once playback is detected.
+    val armIntent = Intent(context, TvOverlayService::class.java).apply { action = TvOverlayService.ACTION_ARM }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        context.startForegroundService(armIntent)
+    } else {
+        context.startService(armIntent)
+    }
+
+    launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    context.startActivity(launchIntent)
 }

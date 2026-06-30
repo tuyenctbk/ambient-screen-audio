@@ -30,4 +30,16 @@ object MediaControlUtil {
         )
         audioManager.dispatchMediaKeyEvent(upEvent)
     }
+
+    /**
+     * Returns true when audio/media is actively playing on the device.
+     *
+     * Used by the "auto-engage on playback" flow so the overlay only blacks out the
+     * screen once the user has actually started media in another app, instead of
+     * covering an idle home screen.
+     */
+    fun isMediaPlaying(context: Context): Boolean {
+        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager ?: return false
+        return audioManager.isMusicActive
+    }
 }

@@ -20,4 +20,13 @@
     <string name="instructions_body">1. Click \'Open Settings\' below.\n2. If you are taken to a list, look for \'AetherScreen TV\' and select it.\n3. Turn the switch to \'Allowed\' (or \'On\').\n\nAlternative path: Go to TV Home Settings -&gt; Apps -&gt; Special app access -&gt; Display over other apps -&gt; AetherScreen TV.</string>
     <string name="btn_open_settings">Open Settings</string>
     <string name="btn_cancel">Cancel</string>
+
+    <!-- Dim over an app (auto-engage on playback) -->
+    <string name="dim_over_app_title">Dim Over an App</string>
+    <string name="dim_over_app_button">Choose App</string>
+    <string name="dim_over_app_desc">Open a video app — the screen dims automatically once playback starts.</string>
+    <string name="app_picker_title">Choose an app to dim over</string>
+    <string name="app_picker_desc">We\'ll open the app and dim the screen automatically once audio starts playing.</string>
+    <string name="app_picker_empty">No apps found.</string>
+    <string name="app_launch_failed">Couldn\'t open that app.</string>
 </resources>
