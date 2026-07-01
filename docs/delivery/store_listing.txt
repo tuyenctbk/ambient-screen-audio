@@ -6,11 +6,12 @@ This document contains the localized store listings for AetherScreen.
 
 <en-US>
 Title: AetherScreen: Ambient Blackout
-Short Description: Pure black screen overlay for OLED power saving and background audio focus.
+Short Description: Dim or blackout your OLED screen automatically when media playback starts.
 Full Description:
 AetherScreen is a premium system utility designed to transform your device into a focused ambient tool. Perfect for users who want to listen to video-based content (like YouTube or Twitch) while saving battery on OLED/AMOLED screens.
 
 Key Features:
+- Playback Auto-Engage: Select any video/music app. AetherScreen launches it and automatically dims or blacks out the screen once playback begins.
 - True Blackout: Overlays a pure black layer (#000000) to turn off OLED pixels and maximize power saving.
 - Background Persistence: Keeps audio playing by preventing system-level display sleep for target media apps.
 - Intelligent Triggers: Automated pocket detection and shake-to-wake sensors.
