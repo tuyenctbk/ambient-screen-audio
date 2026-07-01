@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="toggle_phone">Упр. телефоном</string>
+    <string name="toggle_tv">Упр. ТВ</string>
+    <string name="add_minutes">+10 минут</string>
+    <string name="devices_off">Устройства: ВЫКЛ</string>
+    <string name="device_on">%1$s: ВКЛ</string>
+</resources>

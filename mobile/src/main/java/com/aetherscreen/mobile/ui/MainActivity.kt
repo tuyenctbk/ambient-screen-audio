@@ -215,11 +215,11 @@ fun MainScreen() {
             updateAvailableVersion = version
         }
 
-        scope.launch(Dispatchers.IO) {
+        kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
             val pm = context.packageManager
             val apps = pm.getInstalledApplications(PackageManager.GET_META_DATA)
             val launchable = apps.filter { app ->
-                (app.flags and ApplicationInfo.FLAG_SYSTEM) == 0 && pm.getLaunchIntentForPackage(app.packageName) != null
+                app.packageName != context.packageName && pm.getLaunchIntentForPackage(app.packageName) != null
             }.map { app ->
                 AppInfoItem(pm.getApplicationLabel(app).toString(), app.packageName)
             }.sortedBy { it.name }

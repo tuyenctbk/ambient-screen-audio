@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">AetherScreen</string>
-    <string name="toggle_phone">Basculer l\'écran du téléphone</string>
-    <string name="toggle_tv">Basculer l\'écran du téléviseur</string>
-    <string name="add_minutes">+10 minutes</string>
-    <string name="devices_off">Appareils : ÉTEINTS</string>
-    <string name="device_on">%1$s : ACTIF</string>
+    <string name="toggle_phone">Basculer Téléphone</string>
+    <string name="toggle_tv">Basculer TV</string>
+    <string name="add_minutes">+10 Minutes</string>
+    <string name="devices_off">Appareils: OFF</string>
+    <string name="device_on">%1$s: ON</string>
 </resources>

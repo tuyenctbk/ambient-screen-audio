@@ -13,6 +13,7 @@ kotlinCompose = "2.0.0"
 firebaseVersion = "33.1.0"
 admobVersion = "23.0.0"
 googleServices = "4.4.2"
+gradlePlayPublisher = "3.12.2"
 
 # Compose Versions
 composeBom = "2024.02.01"
@@ -84,3 +85,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVer
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinCompose" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version = "3.0.1" }
+play-publisher = { id = "com.github.triplet.play", version.ref = "gradlePlayPublisher" }

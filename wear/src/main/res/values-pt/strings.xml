@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="toggle_phone">Alternar Telefone</string>
+    <string name="toggle_tv">Alternar TV</string>
+    <string name="add_minutes">+10 Minutos</string>
+    <string name="devices_off">Disp: DESLIGADOS</string>
+    <string name="device_on">%1$s: LIGADO</string>
+</resources>

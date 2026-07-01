@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AetherScreen TV</string>
+    <string name="app_subtitle">오디오를 유지하면서 디스플레이 매트릭스를 어둡게 하여 OLED 픽셀을 절약합니다.</string>
+    <string name="stop_blackout">블랙아웃 중지</string>
+    <string name="start_blackout">블랙아웃 시작</string>
+    <string name="active_desc">돌아가려면 리모컨의 아무 키나 누르세요.</string>
+    <string name="inactive_desc">화면을 어둡게 합니다. TV 리모컨 키로 해제됩니다.</string>
+    <string name="permission_required">권한 필요: 클릭하여 허용하세요.</string>
+    <string name="sleep_timer">절전 자동 일시정지 타이머</string>
+    <string name="bedside_screensaver">침실 화면 보호기 모드</string>
+    <string name="show_clock">어둡게 움직이는 시계 표시</string>
+    <string name="enabled">활성화됨</string>
+    <string name="disabled">비활성화됨</string>
+    <string name="tip">팁: 즐겨찾는 앱에서 오디오를 시작한 다음 AetherScreen TV를 열어 화면을 어둡게 하세요.</string>
+    <string name="preset_off">꺼짐</string>
+    <string name="preset_minutes">%1$d분</string>
+    <string name="permission_guide_title">오버레이 권한 안내</string>
+    <string name="permission_guide_desc">오디오를 유지하면서 화면을 어둡게 하거나 픽셀을 끄려면 AetherScreen TV에 다른 앱 위에 표시 권한이 필요합니다.</string>
+    <string name="instructions_header">Android TV 안내:</string>
+    <string name="instructions_body">1. 아래의 \'설정 열기\'를 클릭합니다.\n2. 목록이 나타나면 \'AetherScreen TV\'를 찾아 선택합니다.\n3. 스위치를 \'허용\'(또는 \'켜짐\')으로 변경합니다.\n\n다른 방법: TV 홈 설정 -&gt; 앱 -&gt; 특별한 앱 액세스 -&gt; 다른 앱 위에 표시 -&gt; AetherScreen TV.</string>
+    <string name="btn_open_settings">설정 열기</string>
+    <string name="btn_cancel">취소</string>
+</resources>

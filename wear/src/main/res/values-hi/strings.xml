@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="toggle_phone">फोन टॉगल करें</string>
+    <string name="toggle_tv">टीवी टॉगल करें</string>
+    <string name="add_minutes">+10 मिनट</string>
+    <string name="devices_off">डिवाइस: बंद</string>
+    <string name="device_on">%1$s: चालू</string>
+</resources>

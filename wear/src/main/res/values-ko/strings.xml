@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="toggle_phone">스마트폰 제어</string>
+    <string name="toggle_tv">TV 제어</string>
+    <string name="add_minutes">+10분</string>
+    <string name="devices_off">기기: 꺼짐</string>
+    <string name="device_on">%1$s: 켜짐</string>
+</resources>

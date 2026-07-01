@@ -1,0 +1,27 @@
+default_platform(:android)
+
+platform :android do
+  desc "Deploy a new version to the Google Play Internal track"
+  lane :deploy_internal do
+    # Build the AABs using Gradle
+    gradle(task: "clean :mobile:bundleRelease :tv:bundleRelease :wear:bundleRelease")
+
+    # Upload to Play Store
+    supply(
+      track: "internal",
+      aab: "mobile/build/outputs/bundle/release/mobile-release.aab",
+      # Note: Supply only supports one AAB per run usually,
+      # but you can call it multiple times or use GPP for multi-artifact sync.
+    )
+  end
+
+  desc "Sync metadata only"
+  lane :sync_metadata do
+    supply(
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_screenshots: true,
+      skip_upload_images: true
+    )
+  end
+end

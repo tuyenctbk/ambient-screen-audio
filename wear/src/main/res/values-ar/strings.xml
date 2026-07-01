@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="toggle_phone">تبديل الهاتف</string>
+    <string name="toggle_tv">تبديل التلفزيون</string>
+    <string name="add_minutes">+10 دقائق</string>
+    <string name="devices_off">الأجهزة: متوقفة</string>
+    <string name="device_on">%1$s: نشط</string>
+</resources>

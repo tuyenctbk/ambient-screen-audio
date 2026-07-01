@@ -27,11 +27,13 @@ import androidx.wear.compose.material.Chip
 import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Scaffold
-import androidx.wear.compose.material.ScalingLazyColumn
+import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
 import androidx.wear.compose.material.Vignette
 import androidx.wear.compose.material.VignettePosition
+import androidx.wear.compose.material.PositionIndicator
+import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import com.aetherscreen.wear.R
 import androidx.compose.ui.res.stringResource
 import com.aetherscreen.wear.service.WearSyncService
@@ -63,15 +65,21 @@ fun WearApp() {
         sendMessage(context, coroutineScope, "/query_status", "")
     }
 
+    val listState = rememberScalingLazyListState()
+
     MaterialTheme {
         Scaffold(
             timeText = { TimeText() },
-            vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) }
+            vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) },
+            positionIndicator = {
+                PositionIndicator(scalingLazyListState = listState)
+            }
         ) {
             ScalingLazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(horizontal = 8.dp),
+                state = listState,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {

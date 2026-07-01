@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AetherScreen TV</string>
+    <string name="app_subtitle">Ses aktifken ekran matrisini karartın ve OLED piksellerinden tasarruf edin.</string>
+    <string name="stop_blackout">KARARTMAYI DURDUR</string>
+    <string name="start_blackout">KARARTMAYI BAŞLAT</string>
+    <string name="active_desc">Geri dönmek için herhangi bir uzaktan kumanda tuşuna basın.</string>
+    <string name="inactive_desc">Ekranı karartır. TV uzaktan kumanda tuşu kapatır.</string>
+    <string name="permission_required">İzin gerekli: Vermek için tıklayın.</string>
+    <string name="sleep_timer">Uyku Otomatik Duraklatma Zamanlayıcısı</string>
+    <string name="bedside_screensaver">Başucu Ekran Koruyucu Modu</string>
+    <string name="show_clock">Loş Hareketli Saati Göster</string>
+    <string name="enabled">Etkin</string>
+    <string name="disabled">Devre Dışı</string>
+    <string name="tip">İpucu: En sevdiğiniz uygulamada sesi başlatın, ardından ekranı karartmak için AetherScreen TV\'yi açın.</string>
+    <string name="preset_off">Kapalı</string>
+    <string name="preset_minutes">%1$dd</string>
+    <string name="permission_guide_title">Üstte Görüntüleme İzni Kılavuzu</string>
+    <string name="permission_guide_desc">Sesi korurken ekranı karartmak veya pikselleri kapatmak için AetherScreen TV\'nin diğer uygulamaların üzerinde görüntüleme iznine ihtiyacı vardır.</string>
+    <string name="instructions_header">Android TV için talimatlar:</string>
+    <string name="instructions_body">1. Aşağıdaki \'Ayarları Aç\' seçeneğine tıklayın.\n2. Bir listeye yönlendirilirseniz \'AetherScreen TV\'yi bulun ve seçin.\n3. Anahtarı \'İzin Verildi\' (veya \'Açık\') konumuna getirin.\n\nAlternatif yol: TV Ana Ayarları -&gt; Uygulamalar -&gt; Özel uygulama erişimi -&gt; Diğer uygulamaların üzerinde göster -&gt; AetherScreen TV.</string>
+    <string name="btn_open_settings">Ayarları Aç</string>
+    <string name="btn_cancel">İptal</string>
+</resources>

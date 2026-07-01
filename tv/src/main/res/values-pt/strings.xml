@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AetherScreen TV</string>
+    <string name="app_subtitle">Apague a matriz do display e economize pixels OLED enquanto mantém o áudio ativo.</string>
+    <string name="stop_blackout">PARAR APAGÃO</string>
+    <string name="start_blackout">INICIAR APAGÃO</string>
+    <string name="active_desc">Pressione qualquer tecla do controle remoto para retornar.</string>
+    <string name="inactive_desc">Escurece a tela. A tecla do controle remoto da TV descarta.</string>
+    <string name="permission_required">Permissão necessária: Clique para conceder.</string>
+    <string name="sleep_timer">Timer de Auto-Pausa</string>
+    <string name="bedside_screensaver">Modo Protetor de Tela de Cabeceira</string>
+    <string name="show_clock">Mostrar Relógio Móvel Escurecido</string>
+    <string name="enabled">Ativado</string>
+    <string name="disabled">Desativado</string>
+    <string name="tip">Dica: Inicie o áudio no seu app favorito e abra o AetherScreen TV para escurecer a tela.</string>
+    <string name="preset_off">Desl.</string>
+    <string name="preset_minutes">%1$dm</string>
+    <string name="permission_guide_title">Guia de Permissão de Sobreposição</string>
+    <string name="permission_guide_desc">Para escurecer a tela ou desligar pixels enquanto preserva o áudio, o AetherScreen TV precisa de permissão para se sobrepor a outros apps.</string>
+    <string name="instructions_header">Instruções para Android TV:</string>
+    <string name="instructions_body">1. Clique em \'Abrir Configurações\' abaixo.\n2. Se você for levado a uma lista, procure por \'AetherScreen TV\' e selecione-o.\n3. Ative a opção \'Permitido\' (ou \'Ativado\').\n\nCaminho alternativo: Vá em Configurações da TV -&gt; Apps -&gt; Acesso especial a apps -&gt; Sobrepor a outros apps -&gt; AetherScreen TV.</string>
+    <string name="btn_open_settings">Abrir Configurações</string>
+    <string name="btn_cancel">Cancelar</string>
+</resources>

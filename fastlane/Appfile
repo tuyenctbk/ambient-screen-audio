@@ -1,0 +1,2 @@
+json_key_file("./service-account.json") # Path to the json secret file - Specified at the root of the project
+package_name("com.aetherscreen") # e.g. com.krausefx.app

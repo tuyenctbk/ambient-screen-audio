@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AetherScreen TV</string>
+    <string name="app_subtitle">ऑडियो सक्रिय रखते हुए डिस्प्ले मैट्रिक्स को ब्लैक आउट करें और OLED पिक्सेल बचाएं।</string>
+    <string name="stop_blackout">ब्लैकआउट रोकें</string>
+    <string name="start_blackout">ब्लैकआउट शुरू करें</string>
+    <string name="active_desc">वापस जाने के लिए रिमोट की कोई भी कुंजी दबाएं।</string>
+    <string name="inactive_desc">स्क्रीन को धुंधला करता है। टीवी रिमोट की कुंजी से हट जाता है।</string>
+    <string name="permission_required">अनुमति आवश्यक: देने के लिए क्लिक करें।</string>
+    <string name="sleep_timer">स्लीप ऑटो-पॉज टाइमर</string>
+    <string name="bedside_screensaver">बेडसाइड स्क्रीनसेवर मोड</string>
+    <string name="show_clock">डिम मूविंग क्लॉक दिखाएं</string>
+    <string name="enabled">सक्षम</string>
+    <string name="disabled">अक्षम</string>
+    <string name="tip">सुझाव: अपने पसंदीदा ऐप पर ऑडियो शुरू करें, फिर स्क्रीन को धुंधला करने के लिए एथरस्क्रीन टीवी खोलें।</string>
+    <string name="preset_off">बंद</string>
+    <string name="preset_minutes">%1$dm</string>
+    <string name="permission_guide_title">ओवरले अनुमति गाइड</string>
+    <string name="permission_guide_desc">ऑडियो सुरक्षित रखते हुए स्क्रीन को धुंधला करने या पिक्सेल बंद करने के लिए, एथरस्क्रीन टीवी को अन्य ऐप्स के ऊपर दिखाने की अनुमति चाहिए।</string>
+    <string name="instructions_header">Android TV के लिए निर्देश:</string>
+    <string name="instructions_body">1. नीचे \'सेटिंग खोलें\' पर क्लिक करें।\n2. यदि आप एक सूची में जाते हैं, तो \'AetherScreen TV\' देखें और उसे चुनें।\n3. स्विच को \'अनुमति दी गई\' (या \'चालू\') पर करें।\n\nवैकल्पिक पथ: टीवी होम सेटिंग्स -&gt; ऐप्स -&gt; विशेष ऐप एक्सेस -&gt; अन्य ऐप्स के ऊपर दिखाएं -&gt; AetherScreen TV।</string>
+    <string name="btn_open_settings">सेटिंग खोलें</string>
+    <string name="btn_cancel">रद्द करें</string>
+</resources>

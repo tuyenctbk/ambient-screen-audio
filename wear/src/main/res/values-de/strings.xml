@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AetherScreen</string>
+    <string name="toggle_phone">Smartphone umschalten</string>
+    <string name="toggle_tv">TV umschalten</string>
+    <string name="add_minutes">+10 Minuten</string>
+    <string name="devices_off">Geräte: AUS</string>
+    <string name="device_on">%1$s: AN</string>
+</resources>

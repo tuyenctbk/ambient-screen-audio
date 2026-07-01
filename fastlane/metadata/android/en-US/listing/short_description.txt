@@ -1,0 +1,1 @@
+Pure black screen overlay for OLED power saving and background audio focus.

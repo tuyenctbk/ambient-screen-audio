@@ -1,0 +1,10 @@
+AetherScreen is a premium system utility designed to transform your device into a focused ambient tool. Perfect for users who want to listen to video-based content (like YouTube or Twitch) while saving battery on OLED/AMOLED screens.
+
+Key Features:
+- True Blackout: Overlays a pure black layer (#000000) to turn off OLED pixels and maximize power saving.
+- Background Persistence: Keeps audio playing by preventing system-level display sleep for target media apps.
+- Intelligent Triggers: Automated pocket detection and shake-to-wake sensors.
+- Multi-Device Control: Sync and control your phone or TV directly from your Wear OS watch.
+- Ad-Free Experience: No intrusive ads during active blackout sessions.
+
+Perfect for bedside use, commuting, or preserving battery during long audio sessions.
