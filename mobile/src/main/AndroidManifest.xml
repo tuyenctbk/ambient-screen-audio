@@ -12,8 +12,13 @@
     <!-- Detect foreground app to trigger custom rules (Usage Access) -->
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" />
 
-    <!-- Query all packages for the App Picker -->
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission" />
+    <!-- Declare package visibility for launchable media apps to comply with Google Play Policy -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
 
     <!-- Vibration for double-tap/shake haptic feedback -->
     <uses-permission android:name="android.permission.VIBRATE" />
