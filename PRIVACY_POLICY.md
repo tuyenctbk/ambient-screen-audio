@@ -20,6 +20,7 @@ To provide system-level screen optimization, AetherScreen requests the following
 - **System Alert Window (Draw Over Other Apps)**: Used to display a black or translucent overlay window on top of other running applications. This is handled strictly by the local Android `WindowManager` API.
 - **Foreground Service & Special Use**: Used to keep the overlay active and manage the sleep timer countdown when the app is in the background. Renders a persistent notification for user control.
 - **Usage Statistics Access (PACKAGE_USAGE_STATS)**: Used locally on-device to check which media application is currently in the foreground to apply per-app dimming rules. This data is never logged or sent to any server.
+- **Query All Packages (Package Visibility)**: Used locally on-device to list installed applications, allowing you to select and target specific media apps for the auto-dimming feature. The list of installed packages is processed strictly on-device, and no list of apps is ever sent to any remote servers.
 - **Proximity Sensor**: Monitored locally to automatically trigger blackout mode when the device is face down or placed inside a pocket.
 - **Accelerometer Sensor**: Processed locally to detect shake gestures to wake up and dismiss the overlay.
 - **Vibration Access**: Used locally to trigger haptic feedback during wake-up gestures.
