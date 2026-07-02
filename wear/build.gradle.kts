@@ -11,7 +11,7 @@ android {
         applicationId = "com.aetherscreen"
         minSdk = 30 // Wear OS 3.0+
         targetSdk = 35
-        versionCode = 1023
+        versionCode = 1033
         versionName = "1.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
